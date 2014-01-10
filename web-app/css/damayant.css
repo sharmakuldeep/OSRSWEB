@@ -1,0 +1,155 @@
+* {	outline:none;}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, fieldset, form, label, textarea, button, input, select, legend, caption, header, section, embed, audio, video, figure, nav {margin:0; padding:0;}
+
+body {font:12px Verdana, Arial, Helvetica, sans-serif; color:#000; background:url(../images/top-bg.jpg) repeat-x;}
+
+
+
+
+button, input, select, textarea {font:85%/130% Arial, Helvetica, sans-serif; overflow:hidden; visibility:visible;}
+input {height:25px;}
+select {height:20px;width: 100px}
+
+
+h1 {font:18px Arial, Helvetica, sans-serif;}
+h2 {font:18px Arial, Helvetica, sans-serif;}
+
+img {border:0;}
+.bdr {border:none !important;}
+a {cursor:pointer; text-decoration:none; color:#1274ca;}
+a:hover {color:#f00;}
+
+.outer {float:left; width:100%; background:url(../images/bottom-bg.jpg) repeat-x bottom;}
+.wrapper {width:998px; margin:0 auto;}
+.clear {clear:both; padding-bottom:20px;}
+
+header, header #logo a, nav, footer, #content-wp, .ft-nav, footer section div, footer section h2, section.bottom, #content-iwp, #breadcum, #content-iwp .right, #content-iwp .right article, #content-iwp .right article .discription {float:left; width:100%; }
+
+/*///////////////////////////////////////////////////---------------------Header---------------------///////////////////////////////////////////////////*/
+.alink {
+    color: #003333;
+    margin-left: 5px;
+}
+.alink:hover  {    color: #cc0000;text-decoration: underline}
+
+
+header { height:164px;font: bold}
+/*header {background:url(../images/header-1.jpg) no-repeat top center; height:164px;font: bold}*/
+header #logo {width:211px; height:76px; padding:24px 0 34px; float:left;}
+header #logo a {height:76px; background:url(../images/logo.png) no-repeat; text-indent:-9999px;}
+header div.top-left {float:left;width: 25%;height: 100px}
+header div.top-right {float:right; width:74%;height: 100px}
+header div.top-right h2, header div.top-right p {margin:0; padding:20px 0; text-align:right; font-weight:bold; color:#FFFFFF;}
+/*header div.top-right p a {color:#000000; text-decoration:none;}*/
+header div.top-right p a.admin {float:right;}
+header div.top-right p span {color:#a52724;}
+/*header div.top-right h2 {float:left; width:100%; background:url(../images/online-revenue.png) no-repeat top center; height:40px; text-indent:-9999px; margin-top:20px; padding-bottom:0;}*/
+header div.top-right h2 {float:left; width:100%;  height:40px; margin-top:20px; padding-bottom:0;}
+
+nav ul {float:left; margin:-2px; padding:0; list-style:none; border-right:#FFFFFF solid 1px;}
+nav ul li {float:left; font:12px/30px Arial, Helvetica, sans-serif; width:140px; text-align:center; border-left:#FFFFFF solid 1px;}
+nav ul li a {color:#FFFFFF;}
+
+
+/*///////////////////////////////////////////////////---------------------Login-Register---------------------///////////////////////////////////////////////////*/
+.login-wp {width:800px; padding:15px 99px; float:left;}
+.login-wp h1 {background:url(../images/multi-tenant.png) no-repeat 50% 50%; height:80px; width:100%; float:left; text-indent:-9999px;}
+.login-wp .login {background:url(../images/login-bg.png) no-repeat; width:690px; height:274px; float:left; padding:38px 55px;}
+
+#login {float:left; width:360px; background:#f3f2f0; padding:20px; height:235px; font:bold 12px Arial, Helvetica, sans-serif;}
+
+#login h2 {color:#01243b; font:bold 14px Arial, Helvetica, sans-serif; background:url(../images/login-icon.png) no-repeat 120px 0; text-align:center; padding-bottom:30px;}
+#login p {float:left; line-height:24px; width:100%; margin:0; padding:10px 0 5px;}
+#login label {float:left; width:120px; text-align:right; }
+#login input {float:right; width:230px; background: #ffffff; border: #ff9933 solid 1px; height:24px; line-height:24px; font-size:12px}
+#login p.btn input {background:#01243b; color:#FFFFFF; font-weight:bold; width:80px; }
+#login p.remember label {float:right; width:100px;}
+#login p.remember input {width:20px;}
+#login p.password {text-align:center; border-top:#017294 solid 1px; margin-top:15px; padding-top:5px;}
+#login a {color:#000000;}
+#login a:hover {color:#017294;}
+
+#register {float:left; width:250px; background: #ff6600; padding:20px; height:235px; color:#FFFFFF; font:12px/18px Arial, Helvetica, sans-serif;}
+#register h2{color: #003333;}
+
+
+/*///////////////////////////////////////////////////---------------------Content-WP---------------------///////////////////////////////////////////////////*/
+#content-wp {padding:20px 0; color:#000; font:12px/20px Arial, Helvetica, sans-serif;min-height: 434px;}
+#content-wp h2, #content-wp h1 {font:18px/30px Arial, Helvetica, sans-serif; color:#000000;}
+#content-wp p {margin:0; padding:0; }
+#content-wp img {float:left; padding:0 10px 10px;}
+
+#home-page ul {margin:0; padding:0; list-style:none; float:left;}
+#home-page ul li {float:left; background:url(../images/bullet.jpg) no-repeat 0 5px; clear:both; padding-left:15px; }
+
+
+
+/*///////////////////////////////////////////////////---------------------search-filter---------------------///////////////////////////////////////////////////*/
+.search-filter {float:left; width:100%;}
+.search-filter div {float:left; width:50%;}
+.search-filter p {float:left; line-height:22px; font-size:13px;}
+.search-filter p label, .search-filter p select, .search-filter p input {float:left;}
+.search-filter p label, .search-filter p select {width:150px;}
+.search-filter p select, .search-filter p input {height:22px; font-size:12px;}
+.search-filter p select {margin-right:15px;}
+.search-filter p.btn {float:right;}
+.search-filter p.btn  input{  background:url(../images/show-result.jpg) no-repeat; text-indent:-9999px; width:107px; height:27px; border:none;}
+
+.heading {float:left; width:100%; padding:50px 0 20px;}
+.heading h2 {float:left; width:50%; color:#006699 !important;}
+.heading p {text-align:right; float:right; width:220px;}
+.heading p input {font-size:12px; float:left; width:200px; height:20px;}
+.heading p input.btn {background:url(../images/search.jpg) no-repeat; width:19px; height:24px; text-indent:-9999px; border:none;}
+
+.table-wp, .table-wp div.table, .table-wp div.table table {float:left; width:100%; background:url(../images/tab-bg.jpg) repeat-x top center;}
+.table-wp div.table {background:url(../images/tab-right.jpg) no-repeat top right;}
+.table-wp div.table table {background:url(../images/tab-left.jpg) no-repeat top left; font-size:12px;}
+.table-wp td td, .table-wp thead td {padding:5px; border-left:#c7c7c7 solid 1px; vertical-align:middle;}
+.table-wp td.sn, .table-wp th.sn {width:42px; border:none;}
+.table-wp table td.bdr-rt { border-right:#c7c7c7 solid 1px;}
+.table-wp table thead  {font-weight:bold; font-size:13px; text-align:center;}
+.table-wp table thead td {height:42px;}
+.table-wp tr td, .table-wp tr th {border-bottom:#c7c7c7 solid 1px;}
+.table-wp tbody td {background:#dae3e8; text-align:center;}
+.table-wp tbody tr.even td {background:#ffe6e6;}
+.table-wp tbody tr.tfoot td {background:#FFFFFF; border-bottom:#666666 solid 1px; border-top:#666666 solid 1px;}
+.table-wp tbody tr.tfoot td img {float:left; cursor:pointer; padding:0 !important;}
+.table-wp tbody tr.tfoot td {background:#666666; color:#FFFFFF; font-weight:bold;}
+.table-wp tbody tr.tfoot td.icon {background:#FFFFFF;}
+
+.table-wp td.sn { border-left:#c7c7c7 solid 1px; border-bottom:#c7c7c7 solid 1px;}
+.table-wp th {background:#067db9; color:#FFFFFF; padding:5px;  text-align:left; }
+
+.table-wp tr.head td {background:#3A6F9B; color:#fff; border-color:#c4dbe9; font-weight:bold;}
+
+.table-wp table table tbody {display:none;}
+
+
+ul.top-links {margin:5px !important; list-style:none; float:right !important; border:#b0cbdc solid 1px !important; border-left:none !important; font-weight:bold;}
+ul.top-links li, ul.top-links li a {clear:none !important; background:none !important; float:left}
+ul.top-links li {border-left:#fff solid 1px !important; padding:0 !important;}
+ul.top-links li a {padding:2px 10px !important; background:#fff !important; color:#1e5a87 !important;}
+ul.top-links li a:hover {background:#fff !important; color:#FFFFFF !important; }
+
+/*///////////////////////////////////////////////////---------------------footer---------------------///////////////////////////////////////////////////*/
+footer p {margin:0; padding:10px 0; font-weight:bold;}
+
+
+
+/*//////////////////print////////////////////*/
+@media print {
+    header {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+}
+
+.reportHead{
+    font-weight: bold;
+    text-align: center;
+}
+

@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="stateReport_Infra" language="groovy" pageWidth="3000" pageHeight="842" columnWidth="2960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8b158f2e-37b8-4648-a823-3bca8e3b9a0d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="stateId" />
+    	<parameter name="districtId" />
+    	<parameter name="month" />
+    	<parameter name="year" />
+	<queryString>
+		<![CDATA[SELECT
+     state.`name` AS state_name,
+     state.`id` AS state_id,
+     district.`id` AS district_id,
+     district.`name` AS district_name,
+     district.`state_id` AS district_state_id,
+     block.`district_id` AS block_district_id,
+     block.`name` AS block_name,
+     block.`id` AS block_id,
+     gram_panchayat.`id` AS gram_panchayat_id,
+     gram_panchayat.`block_id` AS gram_panchayat_block_id,
+     gram_panchayat.`name` AS gram_panchayat_name,
+     village.`id` AS village_id,
+     village.`gram_panchayat_id` AS village_gram_panchayat_id,
+     village.`name` AS village_name,
+     infrastructural_facilities.`id` AS infrastructural_facilities_id,
+     infrastructural_facilities.`isf1` AS infrastructural_facilities_isf1,
+     infrastructural_facilities.`isf10` AS infrastructural_facilities_isf10,
+     infrastructural_facilities.`isf11` AS infrastructural_facilities_isf11,
+     infrastructural_facilities.`isf12` AS infrastructural_facilities_isf12,
+     infrastructural_facilities.`isf13` AS infrastructural_facilities_isf13,
+     infrastructural_facilities.`isf14` AS infrastructural_facilities_isf14,
+     infrastructural_facilities.`isf15` AS infrastructural_facilities_isf15,
+     infrastructural_facilities.`isf16` AS infrastructural_facilities_isf16,
+     infrastructural_facilities.`isf17` AS infrastructural_facilities_isf17,
+     infrastructural_facilities.`isf18` AS infrastructural_facilities_isf18,
+     infrastructural_facilities.`isf19` AS infrastructural_facilities_isf19,
+     infrastructural_facilities.`isf2` AS infrastructural_facilities_isf2,
+     infrastructural_facilities.`isf20` AS infrastructural_facilities_isf20,
+     infrastructural_facilities.`isf21` AS infrastructural_facilities_isf21,
+     infrastructural_facilities.`isf22` AS infrastructural_facilities_isf22,
+     infrastructural_facilities.`isf23` AS infrastructural_facilities_isf23,
+     infrastructural_facilities.`isf24` AS infrastructural_facilities_isf24,
+     infrastructural_facilities.`isf3` AS infrastructural_facilities_isf3,
+     infrastructural_facilities.`isf4` AS infrastructural_facilities_isf4,
+     infrastructural_facilities.`isf5` AS infrastructural_facilities_isf5,
+     infrastructural_facilities.`isf6` AS infrastructural_facilities_isf6,
+     infrastructural_facilities.`isf7` AS infrastructural_facilities_isf7,
+     infrastructural_facilities.`isf8` AS infrastructural_facilities_isf8,
+     infrastructural_facilities.`isf9` AS infrastructural_facilities_isf9,
+     infrastructural_facilities.`month` AS infrastructural_facilities_month,
+     infrastructural_facilities.`village_id` AS infrastructural_facilities_village_id,
+     infrastructural_facilities.`year` AS infrastructural_facilities_year
+FROM
+     `state` state INNER JOIN `district` district ON state.`id` = district.`state_id`
+     INNER JOIN `block` block ON district.`id` = block.`district_id`
+     INNER JOIN `gram_panchayat` gram_panchayat ON block.`id` = gram_panchayat.`block_id`
+     INNER JOIN `village` village ON gram_panchayat.`id` = village.`gram_panchayat_id`
+     INNER JOIN `infrastructural_facilities` infrastructural_facilities ON village.`id` = infrastructural_facilities.`village_id`
+     WHERE
+      state_id = $P!{stateId} and district.`id`= $P!{districtId} and infrastructural_facilities.month=$P!{month} and infrastructural_facilities.year=$P!{year}
+group by infrastructural_facilities.`village_id`]]>
+	</queryString>
+	<field name="state_name" class="java.lang.String"/>
+	<field name="state_id" class="java.lang.Long"/>
+	<field name="district_id" class="java.lang.Long"/>
+	<field name="district_name" class="java.lang.String"/>
+	<field name="district_state_id" class="java.lang.Long"/>
+	<field name="block_district_id" class="java.lang.Long"/>
+	<field name="block_name" class="java.lang.String"/>
+	<field name="block_id" class="java.lang.Long"/>
+	<field name="gram_panchayat_id" class="java.lang.Long"/>
+	<field name="gram_panchayat_block_id" class="java.lang.Long"/>
+	<field name="gram_panchayat_name" class="java.lang.String"/>
+	<field name="village_id" class="java.lang.Long"/>
+	<field name="village_gram_panchayat_id" class="java.lang.Long"/>
+	<field name="village_name" class="java.lang.String"/>
+	<field name="infrastructural_facilities_id" class="java.lang.Long"/>
+	<field name="infrastructural_facilities_isf1" class="java.lang.String"/>
+	<field name="infrastructural_facilities_isf10" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf11" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf12" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf13" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf14" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf15" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf16" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf17" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf18" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf19" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf2" class="java.lang.String"/>
+	<field name="infrastructural_facilities_isf20" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf21" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf22" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf23" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf24" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf3" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf4" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf5" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf6" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf7" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf8" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_isf9" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_month" class="java.lang.Integer"/>
+	<field name="infrastructural_facilities_village_id" class="java.lang.Long"/>
+	<field name="infrastructural_facilities_year" class="java.lang.Integer"/>
+	<variable name="total edu3" class="java.lang.String"/>
+	<group name="District Group">
+		<groupExpression><![CDATA[$F{state_name}]]></groupExpression>
+	</group>
+	<group name="District">
+		<groupExpression><![CDATA[$F{district_id}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<rectangle>
+					<reportElement mode="Transparent" x="0" y="0" width="100" height="20" uuid="8e5f1b77-4e79-4a61-90da-7b833ebe6fb7"/>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="100" y="30" width="100" height="20" uuid="c68634c8-7f8b-481b-9916-bcec58182da2"/>
+				</rectangle>
+				<textField>
+					<reportElement x="0" y="0" width="100" height="20" uuid="b731706e-a732-486c-84b0-8010fd40280d"/>
+					<textFieldExpression><![CDATA[$F{state_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="100" y="30" width="100" height="20" uuid="e9b52100-642d-4dc2-8ff7-e3e84f36b810"/>
+					<textFieldExpression><![CDATA[$F{district_name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Block">
+		<groupExpression><![CDATA[$F{block_id}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement x="200" y="30" width="100" height="20" uuid="14959201-ef33-4af8-b08f-5d8f0df795eb"/>
+					<textFieldExpression><![CDATA[$F{block_name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="GramPanchayat">
+		<groupExpression><![CDATA[$F{gram_panchayat_id}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement x="300" y="30" width="100" height="20" uuid="b41f4105-0dec-42ca-b07d-86b7d5c2ee74"/>
+					<textFieldExpression><![CDATA[$F{gram_panchayat_name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Village">
+		<groupExpression><![CDATA[$F{village_id}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement x="400" y="21" width="100" height="29" uuid="f8288e2a-b61a-4afe-9435-07a9a4f3ce9e"/>
+					<textFieldExpression><![CDATA[$F{village_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="500" y="21" width="100" height="29" uuid="384c31d2-f19d-4449-abcb-ff1af5971dc9"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="600" y="21" width="100" height="29" uuid="1bcf0270-95a9-470e-b8bc-99567492ec30"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="700" y="21" width="100" height="29" uuid="9d7cc16b-cfe8-49b9-b791-ed660fd66520"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="800" y="21" width="100" height="29" uuid="381962a0-6b20-419d-a639-7bb156ebc143"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf4}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="900" y="21" width="100" height="29" uuid="de79dcc8-797a-4db7-a21e-d58461401eaf"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf5}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1000" y="21" width="100" height="29" uuid="8d8fea38-43b0-4b1d-8e4b-4769a1c9fc5b"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf6}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1100" y="21" width="100" height="29" uuid="03e3d720-a3b0-4374-8fa0-7496b5490fd7"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf7}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1200" y="21" width="100" height="29" uuid="0ad56705-e5bb-4606-9e12-254643169995"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf8}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1300" y="21" width="100" height="29" uuid="f2f762a0-0552-4b31-98c2-ae7007eb71eb"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf9}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1400" y="21" width="100" height="29" uuid="8d5d85f8-b849-4734-8315-856d178e8c2a"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf10}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1500" y="21" width="100" height="29" uuid="66fd0884-fa87-4116-92ca-832685990ad3"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf11}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1600" y="21" width="100" height="29" uuid="4e7a0574-2205-4ce7-850f-86a67349ac6a"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf12}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1700" y="21" width="100" height="29" uuid="63cf848d-802b-4d27-897d-005a20cdc29a"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf13}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1800" y="21" width="100" height="29" uuid="621455d9-1a1f-450c-a5d6-6a782aa7d5f6"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf14}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1900" y="21" width="100" height="29" uuid="cba8c178-8646-415c-9e64-f033bc4858fc"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf15}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2000" y="21" width="100" height="29" uuid="0b4fa893-2e6c-45ae-aa79-93d6a7381ce4"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf16}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2100" y="21" width="100" height="29" uuid="326e808f-0bd9-4da7-9e1e-ce81611c8b89"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf17}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2200" y="21" width="100" height="29" uuid="960f3b5b-40ad-4425-a623-6fd9059b1237"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf18}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2299" y="21" width="100" height="29" uuid="7693b2a8-da0c-4974-8bb6-1812c0afc878"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf19}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2399" y="21" width="100" height="29" uuid="b91b4ce1-9670-4938-b4cc-3174ae4dbefd"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf20}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2499" y="21" width="100" height="29" uuid="e67d38ae-227d-451f-90a7-520a7dce174c"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf21}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2599" y="21" width="100" height="29" uuid="207faf60-84dc-4ee6-8219-531a95501aed"/>
+					<textFieldExpression><![CDATA[$F{infrastructural_facilities_isf22}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="38" width="100" height="41" uuid="f234e23d-afea-4980-8b39-351b7a5b9590"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="100" y="38" width="100" height="41" uuid="7bf42c60-fbd0-40f5-8b2f-0b5fd5426caf"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Transparent" x="200" y="38" width="100" height="41" uuid="1c707cba-fae6-496e-a94c-7e0a4a51882e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="38" width="100" height="41" uuid="2ae7350d-5484-4a80-833e-d027c434c0e8"/>
+				<text><![CDATA[State]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="38" width="100" height="41" uuid="de0082d1-b6cf-49d1-88ee-95f87ed03384"/>
+				<text><![CDATA[District]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="38" width="100" height="41" uuid="a09db9af-4003-4aa9-b284-e7fce1594644"/>
+				<text><![CDATA[Block]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="38" width="100" height="41" uuid="de37d2e6-be6a-4aa8-90ef-1b8605253bcb"/>
+				<text><![CDATA[GramPanchayat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="38" width="100" height="41" uuid="46edf376-2b07-469c-8043-2669cdd4c941"/>
+				<text><![CDATA[village]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="38" width="100" height="41" uuid="a7505f88-9046-4c87-b395-0e124b2d7bde"/>
+				<text><![CDATA[Human Hospital/Dispensary/PHC etc.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="38" width="100" height="41" uuid="9d3790f4-eeec-47cc-85a0-0e6d9564e5c3"/>
+				<text><![CDATA[Veterinary Hospital/Dispensary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="700" y="38" width="100" height="41" uuid="10a47b1e-4317-467c-aef7-3f3a7fda0c5f"/>
+				<text><![CDATA[Pucca Road]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="800" y="38" width="100" height="41" uuid="e514ce7d-38d7-4fff-8aa3-51f7d199e3eb"/>
+				<text><![CDATA[Semipucca Road]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="900" y="38" width="100" height="41" uuid="c9f082d0-6597-4fb7-bfe8-26a71d009bab"/>
+				<text><![CDATA[Katcha Road]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1000" y="38" width="100" height="41" uuid="59190c06-5182-4a84-b898-d700b05071c6"/>
+				<text><![CDATA[Bus Stop]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1100" y="38" width="100" height="41" uuid="055b3e12-0d45-4a88-b93c-9e8b03d678b3"/>
+				<text><![CDATA[Post Office]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1200" y="38" width="100" height="41" uuid="1df1d7af-b6e9-4c0c-a3e9-28c44748b95d"/>
+				<text><![CDATA[Railway Station	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1300" y="38" width="100" height="41" uuid="c3f0ec3e-f388-4273-8f5f-3bf1ffffe9b8"/>
+				<text><![CDATA[Police Station]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1400" y="38" width="100" height="41" uuid="29a86f99-a30a-4444-94b2-f44d16d6a3a9"/>
+				<text><![CDATA[Hat/Bazar	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1500" y="38" width="100" height="41" uuid="793ec313-9f6d-4a10-82a6-f96fc965b49e"/>
+				<text><![CDATA[Name of the Day/Days of Har/Bazar	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1600" y="38" width="100" height="41" uuid="7d1ec7c8-0d8a-41f8-bd75-4693c0f9ff6f"/>
+				<text><![CDATA[Schedule Bank	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1700" y="38" width="100" height="41" uuid="18d3a4dc-9947-4fef-84e2-ab2fda1f78c0"/>
+				<text><![CDATA[Regional Rural Bank	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1800" y="38" width="100" height="41" uuid="adbbce9b-187b-41a2-ac24-e42c72899339"/>
+				<text><![CDATA[Co-Operative Bank
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1900" y="38" width="100" height="41" uuid="09c6fce3-18ef-4878-8221-395811161b03"/>
+				<text><![CDATA[Cottage & Village Industry/Name of Industry	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2000" y="38" width="100" height="41" uuid="5c33493f-e666-4198-828f-583f93bc699c"/>
+				<text><![CDATA[Handlooms]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2100" y="38" width="100" height="41" uuid="38d9daf6-005c-440d-8574-6a0a8c6f4353"/>
+				<text><![CDATA[Powerlooms]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2200" y="38" width="100" height="41" uuid="862554a9-f8f1-480b-b9eb-6e00b9d57421"/>
+				<text><![CDATA[Agricultural Society	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2499" y="38" width="100" height="41" uuid="c71b6dc2-7561-4482-9ee4-4498acbda2a6"/>
+				<text><![CDATA[Primary Co-operative Credit Society	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2399" y="38" width="100" height="41" uuid="d2492fb1-5cce-4700-ba29-5fdb4802a055"/>
+				<text><![CDATA[Farming Society
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2599" y="38" width="100" height="41" uuid="148b0a8c-0f1c-4ed8-bd66-d73a5a172d22"/>
+				<text><![CDATA[P.D.S Co-Operative Society
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2299" y="38" width="100" height="41" uuid="befd5428-a477-47d3-8190-4b98a9c73060"/>
+				<text><![CDATA[Marketing Society	]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

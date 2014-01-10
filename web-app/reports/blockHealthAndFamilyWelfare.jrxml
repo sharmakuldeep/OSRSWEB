@@ -1,0 +1,1169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="stateHealthAndFamilyWelfare" language="groovy" pageWidth="9000" pageHeight="595" orientation="Landscape" columnWidth="8960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d66ed5fe-e00f-4b50-8ad4-96f59502f310">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="19"/>
+	<parameter name="stateId" />
+	<parameter name="districtId" />
+	<parameter name="blockId" />
+        	<parameter name="month" />
+        	<parameter name="year" />
+	<queryString>
+		<![CDATA[SELECT
+
+     state.`id` AS state_id,
+     state.`name` AS state_name,
+     district.`id` AS district_id,
+     district.`name` AS district_name,
+     block.`id` AS block_id,
+     block.`name` AS block_name,
+     block.`district_id` AS block_district_id,
+     gram_panchayat.`name` AS gram_panchayat_name,
+     gram_panchayat.`id` AS gram_panchayat_id,
+     gram_panchayat.`block_id` AS gram_panchayat_block_id,
+     village.`id` AS village_id,
+     village.`gram_panchayat_id` AS village_gram_panchayat_id,
+     village.`name` AS village_name,
+
+     health_and_family_welfare.`health39` AS health_and_family_welfare_health39,
+     health_and_family_welfare.`health40` AS health_and_family_welfare_health40,
+     health_and_family_welfare.`health41` AS health_and_family_welfare_health41,
+     health_and_family_welfare.`health42` AS health_and_family_welfare_health42,
+     health_and_family_welfare.`health43` AS health_and_family_welfare_health43,
+     health_and_family_welfare.`health44` AS health_and_family_welfare_health44,
+     health_and_family_welfare.`health45` AS health_and_family_welfare_health45,
+     health_and_family_welfare.`health46` AS health_and_family_welfare_health46,
+     health_and_family_welfare.`health47` AS health_and_family_welfare_health47,
+     health_and_family_welfare.`health48` AS health_and_family_welfare_health48,
+     health_and_family_welfare.`health49` AS health_and_family_welfare_health49,
+     health_and_family_welfare.`health50` AS health_and_family_welfare_health50,
+     health_and_family_welfare.`health51` AS health_and_family_welfare_health51,
+     health_and_family_welfare.`health52` AS health_and_family_welfare_health52,
+     health_and_family_welfare.`health53` AS health_and_family_welfare_health53,
+     health_and_family_welfare.`health54` AS health_and_family_welfare_health54,
+     health_and_family_welfare.`health55` AS health_and_family_welfare_health55,
+     health_and_family_welfare.`health56` AS health_and_family_welfare_health56,
+     health_and_family_welfare.`health57` AS health_and_family_welfare_health57,
+     health_and_family_welfare.`health58` AS health_and_family_welfare_health58,
+     health_and_family_welfare.`health59` AS health_and_family_welfare_health59,
+     health_and_family_welfare.`health60` AS health_and_family_welfare_health60,
+     health_and_family_welfare.`health61` AS health_and_family_welfare_health61,
+     health_and_family_welfare.`health62` AS health_and_family_welfare_health62,
+     health_and_family_welfare.`health63` AS health_and_family_welfare_health63,
+     health_and_family_welfare.`health64` AS health_and_family_welfare_health64,
+     health_and_family_welfare.`health65` AS health_and_family_welfare_health65,
+     health_and_family_welfare.`health66` AS health_and_family_welfare_health66,
+     health_and_family_welfare.`health67` AS health_and_family_welfare_health67,
+     health_and_family_welfare.`health68` AS health_and_family_welfare_health68,
+     health_and_family_welfare.`health69` AS health_and_family_welfare_health69,
+     health_and_family_welfare.`health70` AS health_and_family_welfare_health70,
+     health_and_family_welfare.`health71` AS health_and_family_welfare_health71,
+     health_and_family_welfare.`last_updated` AS health_and_family_welfare_last_updated,
+     health_and_family_welfare.`month` AS health_and_family_welfare_month,
+     health_and_family_welfare.`year` AS health_and_family_welfare_year,
+
+
+
+
+
+
+ (select (nod_sub.`no_of_doctors`) from hospital nod_sub where nod_sub.`id` = health_and_family_welfare.`sub_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nod_sub,
+
+(select (non_sub.`no_of_nurses`) from hospital non_sub where non_sub.`id` = health_and_family_welfare.`sub_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as non_sub,
+
+(select (nob_sub.`no_of_beds`) from hospital nob_sub where nob_sub.`id` = health_and_family_welfare.`sub_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nob_sub,
+
+(select (no_of_female_cases_sub.`no_of_female_cases_treated`) from hospital no_of_female_cases_sub where no_of_female_cases_sub.`id` = health_and_family_welfare.`sub_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_female_cases_sub,
+
+
+(select (no_of_male_cases_sub.`no_of_male_cases_treated`) from hospital no_of_male_cases_sub where no_of_male_cases_sub.`id` = health_and_family_welfare.`sub_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_male_cases_sub,
+
+
+
+
+
+(select (nod_comm.`no_of_doctors`) from hospital nod_comm where nod_comm.`id` = health_and_family_welfare.`comm_health_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nod_comm,
+
+
+(select (non_comm.`no_of_nurses`) from hospital non_comm where non_comm.`id` = health_and_family_welfare.`comm_health_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as non_comm,
+
+(select (nob_comm.`no_of_beds`) from hospital nob_comm where nob_comm.`id` = health_and_family_welfare.`comm_health_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nob_comm,
+
+(select (no_of_female_cases_comm.`no_of_female_cases_treated`) from hospital no_of_female_cases_comm where no_of_female_cases_comm.`id` = health_and_family_welfare.`comm_health_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_female_cases_comm,
+
+
+(select (no_of_male_cases_comm.`no_of_male_cases_treated`) from hospital no_of_male_cases_comm where no_of_male_cases_comm.`id` = health_and_family_welfare.`comm_health_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_male_cases_comm,
+
+
+
+
+
+
+
+
+(select (nod_ayur.`no_of_doctors`) from hospital nod_ayur where nod_ayur.`id` = health_and_family_welfare.`ayur_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nod_ayur,
+
+(select (non_ayur.`no_of_nurses`) from hospital non_ayur where non_ayur.`id` = health_and_family_welfare.`ayur_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as non_ayur,
+
+(select (nob_ayur.`no_of_beds`) from hospital nob_ayur where nob_ayur.`id` = health_and_family_welfare.`ayur_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nob_ayur,
+
+(select (no_of_female_cases_ayur.`no_of_female_cases_treated`) from hospital no_of_female_cases_ayur where no_of_female_cases_ayur.`id` = health_and_family_welfare.`ayur_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_female_cases_ayur,
+
+
+(select (no_of_male_cases_ayur.`no_of_male_cases_treated`) from hospital no_of_male_cases_ayur where no_of_male_cases_ayur.`id` = health_and_family_welfare.`ayur_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_male_cases_ayur,
+
+
+
+
+
+
+(select (nod_hospital.`no_of_doctors`) from hospital nod_hospital where nod_hospital.`id` = health_and_family_welfare.`gov_hospitals_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nod_hospital,
+
+(select (non_hospital.`no_of_nurses`) from hospital non_hospital where non_hospital.`id` = health_and_family_welfare.`gov_hospitals_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as non_hospital,
+
+(select (nob_hospital.`no_of_beds`) from hospital nob_hospital where nob_hospital.`id` = health_and_family_welfare.`gov_hospitals_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nob_hospital,
+
+(select (no_of_female_cases_hospital.`no_of_female_cases_treated`) from hospital no_of_female_cases_hospital where no_of_female_cases_hospital.`id` = health_and_family_welfare.`gov_hospitals_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_female_cases_hospital,
+
+
+(select (no_of_male_cases_hospital.`no_of_male_cases_treated`) from hospital no_of_male_cases_hospital where no_of_male_cases_hospital.`id` = health_and_family_welfare.`gov_hospitals_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_male_cases_hospital,
+
+
+
+
+
+
+(select (nod_dispensaries.`no_of_doctors`) from hospital nod_dispensaries where nod_dispensaries.`id` = health_and_family_welfare.`gov_dispensaries_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nod_dispensaries,
+
+(select (non_dispensaries.`no_of_nurses`) from hospital non_dispensaries where non_dispensaries.`id` = health_and_family_welfare.`gov_dispensaries_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as non_dispensaries,
+
+(select (nob_dispensaries.`no_of_beds`) from hospital nob_dispensaries where nob_dispensaries.`id` = health_and_family_welfare.`gov_dispensaries_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nob_dispensaries,
+
+(select (no_of_female_cases_dispensaries.`no_of_female_cases_treated`) from hospital no_of_female_cases_dispensaries where no_of_female_cases_dispensaries.`id` = health_and_family_welfare.`gov_dispensaries_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_female_cases_dispensaries,
+
+
+(select (no_of_male_cases_dispensaries.`no_of_male_cases_treated`) from hospital no_of_male_cases_dispensaries where no_of_male_cases_dispensaries.`id` = health_and_family_welfare.`gov_dispensaries_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_male_cases_dispensaries,
+
+
+
+
+
+
+(select (nod_family_wel_center.`no_of_doctors`) from hospital nod_family_wel_center where nod_family_wel_center.`id` = health_and_family_welfare.`family_wel_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nod_family_wel_center,
+
+(select (non_family_wel_center.`no_of_nurses`) from hospital non_family_wel_center where non_family_wel_center.`id` = health_and_family_welfare.`family_wel_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as non_family_wel_center,
+
+(select (nob_family_wel_center.`no_of_beds`) from hospital nob_family_wel_center where nob_family_wel_center.`id` = health_and_family_welfare.`family_wel_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nob_family_wel_center,
+
+(select (no_of_female_cases_family_wel_center.`no_of_female_cases_treated`) from hospital no_of_female_cases_family_wel_center where no_of_female_cases_family_wel_center.`id` = health_and_family_welfare.`family_wel_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_female_cases_family_wel_center,
+
+
+(select (no_of_male_cases_family_wel_center.`no_of_male_cases_treated`) from hospital no_of_male_cases_family_wel_center where no_of_male_cases_family_wel_center.`id` = health_and_family_welfare.`family_wel_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_male_cases_family_wel_center,
+
+
+
+
+
+
+(select (nod_homeo_cells.`no_of_doctors`) from hospital nod_homeo_cells where nod_homeo_cells.`id` = health_and_family_welfare.`homeo_cells_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nod_homeo_cells,
+
+(select (non_homeo_cells.`no_of_nurses`) from hospital non_homeo_cells where non_homeo_cells.`id` = health_and_family_welfare.`homeo_cells_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as non_homeo_cells,
+
+(select (nob_homeo_cells.`no_of_beds`) from hospital nob_homeo_cells where nob_homeo_cells.`id` = health_and_family_welfare.`homeo_cells_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nob_homeo_cells,
+
+(select (no_of_female_cases_homeo_cells.`no_of_female_cases_treated`) from hospital no_of_female_cases_homeo_cells where no_of_female_cases_homeo_cells.`id` = health_and_family_welfare.`homeo_cells_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_female_cases_homeo_cells,
+
+
+(select (no_of_male_cases_homeo_cells.`no_of_male_cases_treated`) from hospital no_of_male_cases_homeo_cells where no_of_male_cases_homeo_cells.`id` = health_and_family_welfare.`homeo_cells_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_male_cases_homeo_cells,
+
+
+
+
+(select (nod_other_centers.`no_of_doctors`) from hospital nod_other_centers where nod_other_centers.`id` = health_and_family_welfare.`other_centers_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nod_other_centers,
+
+(select (non_other_centers.`no_of_nurses`) from hospital non_other_centers where non_other_centers.`id` = health_and_family_welfare.`other_centers_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as non_other_centers,
+
+(select (nob_other_centers.`no_of_beds`) from hospital nob_other_centers where nob_other_centers.`id` = health_and_family_welfare.`other_centers_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nob_other_centers,
+
+(select (no_of_female_cases_other_centers.`no_of_female_cases_treated`) from hospital no_of_female_cases_other_centers where no_of_female_cases_other_centers.`id` = health_and_family_welfare.`other_centers_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_female_cases_other_centers,
+
+
+(select (no_of_male_cases_other_centers.`no_of_male_cases_treated`) from hospital no_of_male_cases_other_centers where no_of_male_cases_other_centers.`id` = health_and_family_welfare.`other_centers_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_male_cases_other_centers,
+
+
+
+
+(select (nod_prim_health_center.`no_of_doctors`) from hospital nod_prim_health_center where nod_prim_health_center.`id` = health_and_family_welfare.`prim_health_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nod_prim_health_center,
+
+(select (non_prim_health_center.`no_of_nurses`) from hospital non_prim_health_center where non_prim_health_center.`id` = health_and_family_welfare.`prim_health_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as non_prim_health_center,
+
+(select (nob_prim_health_center.`no_of_beds`) from hospital nob_prim_health_center where nob_prim_health_center.`id` = health_and_family_welfare.`prim_health_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as nob_prim_health_center,
+
+(select (no_of_female_cases_prim_health_center.`no_of_female_cases_treated`) from hospital no_of_female_cases_prim_health_center where no_of_female_cases_prim_health_center.`id` = health_and_family_welfare.`prim_health_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_female_cases_prim_health_center,
+
+
+(select (no_of_male_cases_prim_health_center.`no_of_male_cases_treated`) from hospital no_of_male_cases_prim_health_center where no_of_male_cases_prim_health_center.`id` = health_and_family_welfare.`prim_health_center_id` and
+  health_and_family_welfare.`village_id`=village.`id`) as no_of_male_cases_prim_health_center
+
+
+
+
+
+
+
+FROM
+     `state` state INNER JOIN `district` district ON state.`id` = district.`state_id`
+     INNER JOIN `block` block ON district.`id` = block.`district_id`
+     INNER JOIN `gram_panchayat` gram_panchayat ON block.`id` = gram_panchayat.`block_id`
+     INNER JOIN `village` village ON gram_panchayat.`id` = village.`gram_panchayat_id`
+     INNER JOIN `health_and_family_welfare` health_and_family_welfare ON village.`id` = health_and_family_welfare.`village_id`
+      LEFT OUTER JOIN `hospital` hospital ON health_and_family_welfare.`comm_health_center_id` = hospital.`id`
+      AND hospital.`id` = health_and_family_welfare.`sub_center_id`
+     AND hospital.`id` = health_and_family_welfare.`other_centers_id`
+     AND hospital.`id` = health_and_family_welfare.`prim_health_center_id`
+     AND hospital.`id` = health_and_family_welfare.`homeo_cells_id`
+     AND hospital.`id` = health_and_family_welfare.`ayur_center_id`
+     AND hospital.`id` = health_and_family_welfare.`gov_hospitals_id`
+     AND hospital.`id` = health_and_family_welfare.`family_wel_center_id`
+
+
+WHERE
+ state_id = $P!{stateId} and district_id = $P!{districtId} and block_id = $P!{blockId} and health_and_family_welfare.month=$P!{month} and health_and_family_welfare.year = $P!{year}
+
+   order by state.id, district.id, block.id, gram_panchayat.id, village.id]]>
+	</queryString>
+	<field name="state_name" class="java.lang.String"/>
+	<field name="district_name" class="java.lang.String"/>
+	<field name="block_name" class="java.lang.String"/>
+	<field name="block_district_id" class="java.lang.Long"/>
+	<field name="gram_panchayat_name" class="java.lang.String"/>
+	<field name="gram_panchayat_id" class="java.lang.Long"/>
+	<field name="gram_panchayat_block_id" class="java.lang.Long"/>
+	<field name="village_gram_panchayat_id" class="java.lang.Long"/>
+	<field name="village_name" class="java.lang.String"/>
+	<field name="health_and_family_welfare_health39" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health40" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health41" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health42" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health43" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health44" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health45" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health46" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health47" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health48" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health49" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health50" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health51" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health52" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health53" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health54" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health55" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health56" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health57" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health58" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health59" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health60" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health61" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health62" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health63" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health64" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health65" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health66" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health67" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health68" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health69" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health70" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_health71" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_last_updated" class="java.sql.Timestamp"/>
+	<field name="health_and_family_welfare_month" class="java.lang.Integer"/>
+	<field name="health_and_family_welfare_year" class="java.lang.Integer"/>
+	<field name="village_id" class="java.lang.Long"/>
+	<field name="block_id" class="java.lang.Long"/>
+	<field name="district_id" class="java.lang.Long"/>
+	<field name="state_id" class="java.lang.Long"/>
+	<field name="nod_sub" class="java.lang.Integer"/>
+	<field name="non_sub" class="java.lang.Integer"/>
+	<field name="nob_sub" class="java.lang.Integer"/>
+	<field name="no_of_female_cases_sub" class="java.lang.Integer"/>
+	<field name="no_of_male_cases_sub" class="java.lang.Integer"/>
+	<field name="nod_comm" class="java.lang.Integer"/>
+	<field name="non_comm" class="java.lang.Integer"/>
+	<field name="nob_comm" class="java.lang.Integer"/>
+	<field name="no_of_female_cases_comm" class="java.lang.Integer"/>
+	<field name="no_of_male_cases_comm" class="java.lang.Integer"/>
+	<field name="nod_ayur" class="java.lang.Integer"/>
+	<field name="non_ayur" class="java.lang.Integer"/>
+	<field name="nob_ayur" class="java.lang.Integer"/>
+	<field name="no_of_female_cases_ayur" class="java.lang.Integer"/>
+	<field name="no_of_male_cases_ayur" class="java.lang.Integer"/>
+	<field name="nod_hospital" class="java.lang.Integer"/>
+	<field name="non_hospital" class="java.lang.Integer"/>
+	<field name="nob_hospital" class="java.lang.Integer"/>
+	<field name="no_of_female_cases_hospital" class="java.lang.Integer"/>
+	<field name="no_of_male_cases_hospital" class="java.lang.Integer"/>
+	<field name="nod_dispensaries" class="java.lang.Integer"/>
+	<field name="non_dispensaries" class="java.lang.Integer"/>
+	<field name="nob_dispensaries" class="java.lang.Integer"/>
+	<field name="no_of_female_cases_dispensaries" class="java.lang.Integer"/>
+	<field name="no_of_male_cases_dispensaries" class="java.lang.Integer"/>
+	<field name="nod_family_wel_center" class="java.lang.Integer"/>
+	<field name="non_family_wel_center" class="java.lang.Integer"/>
+	<field name="nob_family_wel_center" class="java.lang.Integer"/>
+	<field name="no_of_female_cases_family_wel_center" class="java.lang.Integer"/>
+	<field name="no_of_male_cases_family_wel_center" class="java.lang.Integer"/>
+	<field name="nod_homeo_cells" class="java.lang.Integer"/>
+	<field name="non_homeo_cells" class="java.lang.Integer"/>
+	<field name="nob_homeo_cells" class="java.lang.Integer"/>
+	<field name="no_of_female_cases_homeo_cells" class="java.lang.Integer"/>
+	<field name="no_of_male_cases_homeo_cells" class="java.lang.Integer"/>
+	<field name="nod_other_centers" class="java.lang.Integer"/>
+	<field name="non_other_centers" class="java.lang.Integer"/>
+	<field name="nob_other_centers" class="java.lang.Integer"/>
+	<field name="no_of_female_cases_other_centers" class="java.lang.Integer"/>
+	<field name="no_of_male_cases_other_centers" class="java.lang.Integer"/>
+	<field name="nod_prim_health_center" class="java.lang.Integer"/>
+	<field name="non_prim_health_center" class="java.lang.Integer"/>
+	<field name="nob_prim_health_center" class="java.lang.Integer"/>
+	<field name="no_of_female_cases_prim_health_center" class="java.lang.Integer"/>
+	<field name="no_of_male_cases_prim_health_center" class="java.lang.Integer"/>
+	<group name="District">
+		<groupExpression><![CDATA[$F{district_id}]]></groupExpression>
+		<groupHeader>
+			<band height="51">
+				<textField>
+					<reportElement x="1" y="30" width="100" height="20" uuid="4609afbf-b7ec-4ddf-be1b-7a8ba97c473d"/>
+					<textFieldExpression><![CDATA[$F{state_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="101" y="30" width="100" height="20" uuid="f0cd9a14-f19a-44e1-a4e1-3be060c51ec4"/>
+					<textFieldExpression><![CDATA[$F{district_name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Block">
+		<groupExpression><![CDATA[$F{block_id}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement x="201" y="30" width="100" height="20" uuid="cde41481-7b52-4201-905b-7d0cc12ca89e"/>
+					<textFieldExpression><![CDATA[$F{block_name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="GramPanchayat">
+		<groupExpression><![CDATA[$F{gram_panchayat_id}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement x="301" y="30" width="100" height="20" uuid="aa0fee79-d021-446b-9239-bf4d860214c9"/>
+					<textFieldExpression><![CDATA[$F{gram_panchayat_name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Village">
+		<groupExpression><![CDATA[$F{village_id}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement x="603" y="5" width="100" height="33" uuid="6d35fd2f-301a-43ef-bc95-adb1496be894"/>
+					<textFieldExpression><![CDATA[$F{non_hospital}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="703" y="5" width="100" height="33" uuid="52eb1c80-a189-41b9-95de-496114a2328c"/>
+					<textFieldExpression><![CDATA[$F{nob_hospital}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="803" y="5" width="100" height="33" uuid="dadc1d1f-5979-44b3-a568-59036604f04b"/>
+					<textFieldExpression><![CDATA[$F{no_of_male_cases_hospital}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="903" y="5" width="100" height="33" uuid="d568d585-05b9-49e6-9471-5f2c6c8c7646"/>
+					<textFieldExpression><![CDATA[$F{no_of_female_cases_hospital}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1003" y="5" width="100" height="33" uuid="1447a782-3fee-474c-a8be-d4c94dc7577b"/>
+					<textFieldExpression><![CDATA[$F{nod_dispensaries}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1103" y="5" width="100" height="33" uuid="af30af81-91ee-491e-8239-a0eb17714041"/>
+					<textFieldExpression><![CDATA[$F{non_dispensaries}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1203" y="5" width="100" height="33" uuid="6dc68c34-b5aa-469a-b86e-376f80770f3f"/>
+					<textFieldExpression><![CDATA[$F{nob_dispensaries}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1303" y="5" width="100" height="33" uuid="174cd977-6432-4a7d-936c-0e443d4ae593"/>
+					<textFieldExpression><![CDATA[$F{no_of_male_cases_dispensaries}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1403" y="5" width="100" height="33" uuid="b929aebf-c6a4-4311-a78b-75abd50f8976"/>
+					<textFieldExpression><![CDATA[$F{no_of_female_cases_dispensaries}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1503" y="5" width="100" height="33" uuid="68945329-b390-44c4-9496-0e49f7f61508"/>
+					<textFieldExpression><![CDATA[$F{nod_prim_health_center}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1603" y="5" width="100" height="33" uuid="bc1919e2-04e4-4122-b3e5-a524dc372746"/>
+					<textFieldExpression><![CDATA[$F{non_prim_health_center}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1703" y="5" width="100" height="33" uuid="9c6eb643-4930-45e5-8165-12514dabaa96"/>
+					<textFieldExpression><![CDATA[$F{nob_prim_health_center}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1803" y="5" width="100" height="33" uuid="ad7e4ba1-0d56-42b5-89ae-bcd694859ebf"/>
+					<textFieldExpression><![CDATA[$F{no_of_male_cases_prim_health_center}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1903" y="5" width="100" height="33" uuid="a01e0e1d-a801-4daf-b3a0-31e6ed1e8f9a"/>
+					<textFieldExpression><![CDATA[$F{no_of_female_cases_prim_health_center}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2003" y="5" width="100" height="33" uuid="6a0e412b-3cb8-4843-a579-72b30122674d"/>
+					<textFieldExpression><![CDATA[$F{nod_sub}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2103" y="5" width="100" height="33" uuid="c112f25b-3711-4f10-9b87-0489becec7a5"/>
+					<textFieldExpression><![CDATA[$F{non_sub}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2203" y="5" width="100" height="33" uuid="1fde70e4-0491-4716-a49d-b908a49152ea"/>
+					<textFieldExpression><![CDATA[$F{nob_sub}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2303" y="5" width="100" height="33" uuid="b0466513-08d7-4992-a53a-f0bba126feed"/>
+					<textFieldExpression><![CDATA[$F{no_of_male_cases_sub}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2403" y="5" width="100" height="33" uuid="9167d7b7-ab80-4dcd-bb72-96a021dbbd3c"/>
+					<textFieldExpression><![CDATA[$F{no_of_female_cases_sub}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="503" y="5" width="100" height="33" uuid="8d4d3fc7-766a-4c6e-8404-906ececc8b30"/>
+					<textFieldExpression><![CDATA[($F{nod_hospital}!=null)? $F{nod_hospital}:0]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="401" y="5" width="100" height="33" uuid="4e22f1cf-f696-4f2c-87a3-6e435e4cbf97"/>
+					<textFieldExpression><![CDATA[$F{village_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2503" y="5" width="102" height="33" uuid="63eb1b21-e63f-45a0-b783-77ea74f0962b"/>
+					<textFieldExpression><![CDATA[$F{nod_comm}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2605" y="5" width="100" height="33" uuid="8f779e6c-9001-468c-a897-ecd6f8d420bc"/>
+					<textFieldExpression><![CDATA[$F{non_comm}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2905" y="5" width="100" height="33" uuid="a53fd0fc-b743-4d64-91d5-1536db045806"/>
+					<textFieldExpression><![CDATA[$F{no_of_female_cases_comm}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2705" y="5" width="100" height="33" uuid="3e714113-1d12-439e-9f45-0bbab46bbd58"/>
+					<textFieldExpression><![CDATA[$F{nob_comm}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2805" y="5" width="100" height="33" uuid="e7953d38-d1cf-4930-a04d-6bb81743d3ad"/>
+					<textFieldExpression><![CDATA[$F{no_of_male_cases_comm}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3005" y="5" width="100" height="33" uuid="f6bfab06-48b7-43c2-aa4b-0073c2510ede"/>
+					<textFieldExpression><![CDATA[$F{nod_family_wel_center}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3107" y="5" width="100" height="33" uuid="157adb84-15b8-4234-9302-d6989466fd23"/>
+					<textFieldExpression><![CDATA[$F{non_family_wel_center}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3207" y="5" width="100" height="33" uuid="d2da8fbe-589c-4232-9834-fec440ac6c11"/>
+					<textFieldExpression><![CDATA[$F{nob_family_wel_center}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3307" y="5" width="100" height="33" uuid="590c8e4e-5cfc-4fc7-b3ab-04916eb9c40a"/>
+					<textFieldExpression><![CDATA[$F{no_of_male_cases_family_wel_center}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3407" y="5" width="100" height="33" uuid="274c16a6-d27d-4d72-87ed-a70344355012"/>
+					<textFieldExpression><![CDATA[$F{no_of_female_cases_family_wel_center}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3509" y="5" width="100" height="33" uuid="527b53c2-c6b9-426d-8bbf-0cdc87db07fa"/>
+					<textFieldExpression><![CDATA[$F{nod_ayur}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3609" y="5" width="100" height="33" uuid="db44fefb-b05e-49d4-bb1c-871ee490109d"/>
+					<textFieldExpression><![CDATA[$F{non_ayur}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3709" y="5" width="100" height="33" uuid="640aa7ad-dc6c-43b6-9236-33dca67e561e"/>
+					<textFieldExpression><![CDATA[$F{nob_ayur}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3909" y="5" width="100" height="33" uuid="2b256b03-20f6-4549-8b39-6c298028bc8d"/>
+					<textFieldExpression><![CDATA[$F{no_of_female_cases_ayur}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3809" y="5" width="100" height="33" uuid="844ad6a9-5793-474a-ae2d-f8fb29d53563"/>
+					<textFieldExpression><![CDATA[$F{no_of_male_cases_ayur}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4009" y="5" width="100" height="33" uuid="dd94c60c-6428-4a43-924e-9c5d2f723f11"/>
+					<textFieldExpression><![CDATA[$F{nod_homeo_cells}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4109" y="5" width="100" height="33" uuid="7287ab5b-c196-4e4e-b41e-98a9a1d26043"/>
+					<textFieldExpression><![CDATA[$F{non_homeo_cells}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4209" y="5" width="100" height="33" uuid="d06f84a1-1e47-4348-bd78-9a021c3724d7"/>
+					<textFieldExpression><![CDATA[$F{nob_homeo_cells}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4309" y="5" width="100" height="33" uuid="fb122864-6ac4-489e-a0ad-5e043a8c1170"/>
+					<textFieldExpression><![CDATA[$F{no_of_male_cases_homeo_cells}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4409" y="5" width="74" height="33" uuid="395098f7-9e55-477a-bd90-29e68ef96300"/>
+					<textFieldExpression><![CDATA[$F{no_of_female_cases_homeo_cells}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4483" y="5" width="100" height="33" uuid="8950e425-e54f-41d7-83b2-f2993a2432e6"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health39}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4583" y="5" width="100" height="33" uuid="5c979815-ba8a-4ec8-8ac7-9a9a4221b7e9"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health40}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4683" y="5" width="86" height="33" uuid="47f81254-efc5-4b1d-8d41-f66b38a10b6a"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health41}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4769" y="5" width="100" height="33" uuid="922081c3-1c89-471b-b9b6-0c6c9d64bdac"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health42}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4869" y="5" width="100" height="33" uuid="345136ac-a598-4e6e-8189-55a0a495432f"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health43}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4969" y="5" width="100" height="33" uuid="bcdfe491-7818-482e-b632-714430da2103"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health44}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5069" y="5" width="72" height="33" uuid="2238ed89-f660-49a0-b24e-12705ebedd54"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health45}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5141" y="5" width="86" height="33" uuid="c259af98-c597-4347-9b88-704d435ece03"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health46}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5227" y="5" width="100" height="33" uuid="10cf8803-d6c1-485d-9c71-91d25574dfed"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health47}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5327" y="5" width="86" height="33" uuid="cf14f5a1-f884-4435-9241-860ac591cf9e"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health48}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5413" y="5" width="100" height="33" uuid="c26e59d8-e5ab-4d0b-a197-1d414c7e6b40"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health49}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5513" y="5" width="100" height="33" uuid="8176274d-ee5c-4d74-bf3c-40dea003af01"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health50}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5613" y="5" width="100" height="33" uuid="bb818d67-1f87-4a2b-9da3-afac24746174"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health51}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5713" y="5" width="72" height="33" uuid="a06ee41a-5bb2-4fe7-9a17-b421f426a00c"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health52}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5785" y="5" width="100" height="33" uuid="e1145219-3ed6-4aac-aa9a-08e76bfc3124"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health53}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5885" y="5" width="100" height="33" uuid="326af3e4-a49c-49b1-ad6e-59feee415bc5"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health54}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5985" y="5" width="72" height="33" uuid="733d7073-3fbc-4e96-a2f6-358ad55bf721"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health55}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6057" y="5" width="86" height="33" uuid="e8043166-74eb-4585-af8f-1a84de352783"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health56}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6143" y="5" width="100" height="33" uuid="ed866952-4a87-4388-9d5b-6107f046fe1c"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health57}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6243" y="5" width="83" height="33" uuid="ed22d12f-1d51-41ea-b4c7-a26d9cef5f1a"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health58}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6326" y="5" width="59" height="33" uuid="d2e16a89-fbb1-41bc-8c49-0daa7a3b2d03"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health59}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6385" y="5" width="99" height="33" uuid="661557cf-e770-4d5a-8c9b-2fc446cdfeff"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health60}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6483" y="5" width="87" height="33" uuid="98545d2c-fff5-4d65-971e-a7f0802c7089"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health61}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6583" y="5" width="99" height="33" uuid="bfc82562-f60f-4d87-af04-1c961fcae0e3"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health62}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6683" y="5" width="100" height="33" uuid="bc1b1f17-44ad-4422-8708-52f4a6b3dd94"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health63}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6783" y="5" width="99" height="33" uuid="afec6944-eeb2-4b1a-b635-0f8af0d2a177"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health64}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6882" y="5" width="100" height="33" uuid="08861808-230d-4da5-87aa-245a2e4d9d92"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health65}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6982" y="5" width="100" height="33" uuid="ad576880-6872-4066-a9de-c5312a7c14c1"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health66}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7082" y="5" width="100" height="33" uuid="7c9e4660-b6cb-450b-9708-5b9114360169"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health67}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7182" y="5" width="100" height="33" uuid="1d56974b-4008-425b-91dc-0859a274142a"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health68}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7283" y="5" width="100" height="33" uuid="2f303467-0c84-471a-b563-0fb96b0d9e44"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health69}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7382" y="5" width="100" height="33" uuid="87914219-1839-446c-8e4f-b0186d5b75a1"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health70}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7482" y="5" width="100" height="33" uuid="a5e830ee-56fc-4486-9c52-4e2aea433c61"/>
+					<textFieldExpression><![CDATA[$F{health_and_family_welfare_health71}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="130" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="7582" height="44" uuid="6681da9a-2bf5-400a-9110-beedd54a3431"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="115" y="103" width="86" height="27" uuid="1749aae1-edce-4b4a-89fc-cec0ee1efce4"/>
+				<text><![CDATA[District]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6326" y="103" width="58" height="27" uuid="b39d7d4a-f0d5-4332-9483-48f570545b56"/>
+				<text><![CDATA[GNM	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6385" y="103" width="99" height="27" uuid="e5f76ca9-5557-4267-a7c3-9b0bddf56c81"/>
+				<text><![CDATA[ANM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6783" y="103" width="99" height="27" uuid="9abba26c-1b60-4bdc-bfd9-a297e1d6a7d4"/>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6484" y="103" width="86" height="27" uuid="dbf51f3d-ec3c-40b9-889f-5e633e589d3a"/>
+				<text><![CDATA[Men]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6583" y="103" width="89" height="27" uuid="cde6dacb-c04e-4203-80ad-2ce4769e3db3"/>
+				<text><![CDATA[Women]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6983" y="103" width="99" height="27" uuid="d2bf7e6c-64e8-4286-bc13-30d82f7e885c"/>
+				<text><![CDATA[BCG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7383" y="103" width="99" height="27" uuid="171ec6a2-36a6-44c2-bb79-8ff4e71ac983"/>
+				<text><![CDATA[Hepatities-B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7283" y="103" width="99" height="27" uuid="37974606-a907-4c60-a452-bd45ad502731"/>
+				<text><![CDATA[Measles]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7183" y="103" width="99" height="27" uuid="78f39877-96b7-4991-b5b6-dbfe4ab2d4aa"/>
+				<text><![CDATA[OPV-3	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7083" y="103" width="99" height="27" uuid="a706b92a-9444-488d-9389-a01a3541ea16"/>
+				<text><![CDATA[DPT-3	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6326" y="0" width="158" height="44" uuid="3419a7ac-1ca2-4793-9daf-fe5428a263e1"/>
+				<text><![CDATA[Nurses (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6484" y="0" width="198" height="44" uuid="afe98a41-ac0f-448b-b6e6-63943441945a"/>
+				<text><![CDATA[Family Welfare Programme]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6484" y="44" width="199" height="59" uuid="baab9980-3c72-4f64-a012-9b66b9b5d14c"/>
+				<text><![CDATA[Sterilisation Operation (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6683" y="44" width="100" height="59" uuid="6b0b79a8-7efe-4c66-aeec-044fcbfacdbc"/>
+				<text><![CDATA[IUD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6783" y="44" width="99" height="59" uuid="ff2c2451-0f67-4d46-bd25-efb4f9319ef4"/>
+				<text><![CDATA[C.C Users]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6883" y="44" width="99" height="59" uuid="b82eb7b4-1997-41e5-9323-e5634d6d6df2"/>
+				<text><![CDATA[OP Users	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6983" y="44" width="99" height="59" uuid="d510d3bf-52c2-40d1-9d22-7b50f058e2e5"/>
+				<text><![CDATA[Infant (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6983" y="0" width="99" height="44" uuid="5aef36f2-ec59-4676-a442-ca6461e5eaee"/>
+				<text><![CDATA[Performance Of Immunization Programme]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7483" y="44" width="99" height="59" uuid="689b1d4b-2a8d-476e-b318-cf04956d9873"/>
+				<text><![CDATA[Pregnant Women (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="503" y="103" width="100" height="27" uuid="9acaf33c-1a64-4703-b90c-cde3164bdaa2"/>
+				<text><![CDATA[Doctors (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="603" y="103" width="100" height="27" uuid="af265f34-5a27-4ca0-96f4-b5452c08839b"/>
+				<text><![CDATA[Nurses (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="803" y="103" width="100" height="27" uuid="49acd899-c530-4b16-a793-9f866ff5542b"/>
+				<text><![CDATA[Male (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="903" y="103" width="100" height="27" uuid="ff10afff-8b62-4ec7-97da-930c6bf89a8b"/>
+				<text><![CDATA[Female (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="703" y="103" width="100" height="27" uuid="e55ebc94-25de-450c-90d1-3dcb203a5231"/>
+				<text><![CDATA[Beds (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="803" y="44" width="200" height="59" uuid="dd1c1acb-75ae-4483-91ae-a0f28add29e3"/>
+				<text><![CDATA[Cases Treated	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="503" y="0" width="500" height="44" uuid="33f8256d-3aed-4090-acf0-22fcac6160ad"/>
+				<text><![CDATA[(1) Govt. Hospitals	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1403" y="103" width="100" height="27" uuid="bc871213-53a0-47a1-92ba-5712fd549469"/>
+				<text><![CDATA[Female (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1303" y="103" width="100" height="27" uuid="585187de-0495-4f3d-b178-27ead899ab8e"/>
+				<text><![CDATA[Male (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1203" y="103" width="100" height="27" uuid="c58754ee-88d1-4386-9154-e3fbf8b7ab83"/>
+				<text><![CDATA[Beds (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1003" y="103" width="100" height="27" uuid="8bda75d3-0758-4170-8e74-619faa607fad"/>
+				<text><![CDATA[Doctors (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1303" y="44" width="200" height="59" uuid="46c4a168-857d-4b7a-bccc-6f267133810b"/>
+				<text><![CDATA[Cases Treated	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1103" y="103" width="100" height="27" uuid="200ee391-8f22-426d-83d3-e8db9d0ee83e"/>
+				<text><![CDATA[Nurses (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1003" y="0" width="500" height="44" uuid="327b016f-d954-4525-a9ab-39270d79a774"/>
+				<text><![CDATA[(2) Govt. Dispensaries	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1503" y="0" width="500" height="44" uuid="5b2a3589-8fc5-41a8-a5b0-5e73289a00e3"/>
+				<text><![CDATA[(3) Primary Health Centres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1903" y="103" width="100" height="27" uuid="4257f49c-232a-4fd1-9100-9b20936c8a44"/>
+				<text><![CDATA[Female (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1503" y="103" width="100" height="27" uuid="d7faabc7-4431-4899-9bad-920d54ae4765"/>
+				<text><![CDATA[Doctors (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1603" y="103" width="100" height="27" uuid="96bf551c-dd87-449d-a84b-2b0e5edf37c0"/>
+				<text><![CDATA[Nurses (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1703" y="103" width="100" height="27" uuid="e593c6d4-0839-4602-8e43-af4b21741540"/>
+				<text><![CDATA[Beds (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1803" y="44" width="200" height="59" uuid="c961363a-c638-4d1b-a760-d5b6a5fdc72c"/>
+				<text><![CDATA[Cases Treated	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1803" y="103" width="100" height="27" uuid="a0f734ba-bab0-4b12-b57a-337e85033ee8"/>
+				<text><![CDATA[Male (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2203" y="103" width="100" height="27" uuid="979b1ca0-17c5-4771-9770-372a19a07172"/>
+				<text><![CDATA[Beds (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2303" y="44" width="200" height="59" uuid="8f754a6b-6436-4a3b-ae77-53db9c1ab2bc"/>
+				<text><![CDATA[Cases Treated	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2403" y="103" width="100" height="27" uuid="b1ee0c56-1cd8-41d7-8329-ffcc5ff35213"/>
+				<text><![CDATA[Female (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2303" y="103" width="100" height="27" uuid="6f25ce5f-f6e5-4077-a914-6cc9acba159c"/>
+				<text><![CDATA[Male (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2103" y="103" width="100" height="27" uuid="1e81c740-cec5-459b-b1cf-e2235cf32154"/>
+				<text><![CDATA[Nurses (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2003" y="0" width="500" height="44" uuid="e91d93ff-fd29-45d8-b391-04fa2c4bc8bc"/>
+				<text><![CDATA[(4) Sub-Centres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2003" y="103" width="100" height="27" uuid="0775ed5d-983f-46e6-a9d9-bc151e27b15c"/>
+				<text><![CDATA[Doctors (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2705" y="103" width="100" height="27" uuid="6bb79687-41c1-4db2-97e1-617231bb9365"/>
+				<text><![CDATA[Beds (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2805" y="44" width="200" height="59" uuid="c8699ad6-cb0f-48ee-8c97-4234f5aeb525"/>
+				<text><![CDATA[Cases Treated	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2805" y="103" width="100" height="27" uuid="c54eefe9-f4b2-4ee9-a03b-910065096fb6"/>
+				<text><![CDATA[Male (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2605" y="103" width="100" height="27" uuid="e9334359-82cb-4eb2-a1b1-c3a0acb20e86"/>
+				<text><![CDATA[Nurses (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2503" y="0" width="502" height="44" uuid="f39e227c-a7cd-4aa5-b50b-44b556adc420"/>
+				<text><![CDATA[(5) Community Health Centres	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2503" y="103" width="102" height="27" uuid="6582ce0e-f1ef-46d8-b109-52bd375e1d96"/>
+				<text><![CDATA[Doctors (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3005" y="0" width="502" height="44" uuid="65df5733-9484-4731-a79b-e0ee0364c4f3"/>
+				<text><![CDATA[(6) Family Welfare Centres	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3005" y="103" width="102" height="27" uuid="cdcca35e-c645-44b6-8794-95156e3da04e"/>
+				<text><![CDATA[Doctors (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3307" y="103" width="100" height="27" uuid="36edcfd2-9cdf-47e2-a6a3-9068200ec6bf"/>
+				<text><![CDATA[Male (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3207" y="103" width="100" height="27" uuid="2da2ee30-1583-482c-91c9-9221b97bf132"/>
+				<text><![CDATA[Beds (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3407" y="103" width="100" height="27" uuid="bc31bb67-3c21-49b5-9dfb-f89cfd56117b"/>
+				<text><![CDATA[Female (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3307" y="44" width="200" height="59" uuid="1471f0bb-e12b-4ad2-95fd-53cb48c75070"/>
+				<text><![CDATA[Cases Treated	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3107" y="103" width="100" height="27" uuid="03db44d9-19b0-482b-9886-5338df000c69"/>
+				<text><![CDATA[Nurses (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2905" y="103" width="100" height="27" uuid="eb910937-70a0-4166-a7a7-e42de43121e2"/>
+				<text><![CDATA[Female (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3809" y="44" width="186" height="59" uuid="c84a3bfb-6e13-4a9d-ab6b-70f565e8db46"/>
+				<text><![CDATA[Cases Treated	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3909" y="103" width="86" height="27" uuid="3010035c-5dc4-4f9d-b905-f4839aed21ae"/>
+				<text><![CDATA[Female (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3809" y="103" width="100" height="27" uuid="8f30f971-f9da-468a-98c8-f7135b9bfb9a"/>
+				<text><![CDATA[Male (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3709" y="103" width="100" height="27" uuid="be2d44f9-1a57-46cf-ba87-dfb91b88dd55"/>
+				<text><![CDATA[Beds (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3609" y="103" width="100" height="27" uuid="cee65827-4e14-4493-8a80-98db1f8cfded"/>
+				<text><![CDATA[Nurses (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3507" y="0" width="488" height="44" uuid="2cb4ea06-79c1-4c77-8853-955fbceb4536"/>
+				<text><![CDATA[(7) Ayurvedic Centres	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3507" y="103" width="102" height="27" uuid="68188d8c-46ac-4a2f-bb7c-72af48c57603"/>
+				<text><![CDATA[Doctors (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6682" y="103" width="100" height="27" uuid="45331ed2-05c5-45b0-8261-29b9cec326ec"/>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6883" y="103" width="99" height="27" uuid="ae67437c-8b53-4785-9b6c-f55590c545ce"/>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7483" y="103" width="99" height="27" uuid="a5355a2c-fb11-4305-a1f9-0aa97b792967"/>
+				<text><![CDATA[T.T.(PW)
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3995" y="103" width="102" height="27" uuid="03015dc2-1735-4199-b517-9e545deefaa3"/>
+				<text><![CDATA[Doctors (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4197" y="103" width="100" height="27" uuid="74137b0d-8884-4350-905d-e1fb0d2b4852"/>
+				<text><![CDATA[Beds (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3995" y="0" width="488" height="44" uuid="3d110752-e5fb-4f96-87c3-457ac4d58794"/>
+				<text><![CDATA[(8) Homeopathic Cells	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4297" y="44" width="186" height="59" uuid="bcb94217-7201-42fb-98ac-be4bd6ab7d41"/>
+				<text><![CDATA[Cases Treated	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4297" y="103" width="100" height="27" uuid="8fefd86d-0d6e-422e-b112-4277243afccd"/>
+				<text><![CDATA[Male (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4397" y="103" width="86" height="27" uuid="d5f953bd-bacd-44fc-b5e2-7ee4df08f299"/>
+				<text><![CDATA[Female (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4097" y="103" width="100" height="27" uuid="21323570-679f-4d7f-8f2a-f26e2f541159"/>
+				<text><![CDATA[Nurses (No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4483" y="103" width="100" height="27" uuid="d45aa63d-ecb3-4187-891f-ca338e8fbcd7"/>
+				<text><![CDATA[Beds for Women (No.)	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4583" y="103" width="86" height="27" uuid="dfdbeca0-22db-428f-9385-3fd91ec44484"/>
+				<text><![CDATA[ASHA Workers (No.)
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4483" y="0" width="186" height="44" uuid="2aa567c6-da10-44f5-90cc-3024933b4980"/>
+				<text><![CDATA[(9) Others	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4769" y="103" width="86" height="27" uuid="b87bb683-c0e2-4053-b8af-01c09cc71532"/>
+				<text><![CDATA[Female]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4669" y="103" width="100" height="27" uuid="f49e6223-8d1a-489c-9fe5-a8e3b58b8d30"/>
+				<text><![CDATA[Male]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4669" y="0" width="186" height="44" uuid="0868b2e0-5d4b-459a-8eea-3ca09c5961b4"/>
+				<text><![CDATA[Birth]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5141" y="103" width="86" height="27" uuid="7c35d840-5705-4dac-9c13-c26749c386b4"/>
+				<text><![CDATA[5 To 14 year	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5227" y="103" width="100" height="27" uuid="d9edb987-1584-43bd-8da3-2099810bc6cf"/>
+				<text><![CDATA[15 To 59 Year	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4855" y="103" width="100" height="27" uuid="7afc2b76-5def-4d2e-87e1-c446b221d79e"/>
+				<text><![CDATA[Still Birth	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4955" y="103" width="100" height="27" uuid="8a04d503-4138-44e7-8acf-b2e9a4be8e93"/>
+				<text><![CDATA[Less Than 1 Year	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5055" y="103" width="86" height="27" uuid="1a3a692f-1771-4177-88c4-be74f9d21cd5"/>
+				<text><![CDATA[1 To 4 Year	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5327" y="103" width="86" height="27" uuid="0c962b3c-97f2-4331-b9e5-b55cbcec947a"/>
+				<text><![CDATA[60 And Above	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4855" y="44" width="558" height="59" uuid="a5552a83-b6a1-4199-8a37-eb5b60950e5f"/>
+				<text><![CDATA[Male ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4855" y="0" width="558" height="44" uuid="c5392849-9ca6-4bc8-82d0-8f758eb64621"/>
+				<text><![CDATA[Death]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5513" y="103" width="100" height="27" uuid="5ebcc223-092b-476f-b8e9-00469ed67ed9"/>
+				<text><![CDATA[Less Than 1 Year	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5885" y="103" width="86" height="27" uuid="668c25a9-8f5f-471d-95c9-97d00c625605"/>
+				<text><![CDATA[60 And Above	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5699" y="103" width="86" height="27" uuid="0b8d46d1-b82c-4bd8-afb8-80ba185f910f"/>
+				<text><![CDATA[5 To 14 year	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5413" y="103" width="100" height="27" uuid="98481266-3270-49d1-97b3-27128b639718"/>
+				<text><![CDATA[Still Birth	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5785" y="103" width="100" height="27" uuid="8f779ccb-b9c3-420a-ab31-223bc1a74a30"/>
+				<text><![CDATA[15 To 59 Year	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5613" y="103" width="86" height="27" uuid="b7708a77-81aa-4ce4-a31e-d432abc0cadd"/>
+				<text><![CDATA[1 To 4 Year	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5413" y="44" width="558" height="59" uuid="be12f632-99bd-441b-9d32-a470cd565fef"/>
+				<text><![CDATA[feMale ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5413" y="0" width="558" height="44" uuid="06a412f8-5727-45fa-a723-3096ae47753c"/>
+				<text><![CDATA[Death]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5971" y="103" width="86" height="27" uuid="c697601a-6fd0-4a38-98e2-10d6147cb3ee"/>
+				<text><![CDATA[Post Delivery Death	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6057" y="103" width="86" height="27" uuid="8a587063-5b8a-49ef-bf02-6997e67ff642"/>
+				<text><![CDATA[0 To 7 Days	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6143" y="103" width="86" height="27" uuid="d573cb3c-ade1-4cb1-abd9-6de7b68e2bab"/>
+				<text><![CDATA[8 To 30 Days	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6229" y="103" width="97" height="27" uuid="5acefc02-558e-48ca-8c89-6d45525abf5e"/>
+				<text><![CDATA[31 To 42 Days
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5971" y="0" width="355" height="44" uuid="91d4d216-2ac9-4c06-907a-e5feb03e502b"/>
+				<text><![CDATA[Maternal Mortality	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="201" y="103" width="100" height="27" backcolor="#336600" uuid="2d0eb163-5739-4ccf-90da-08d34c515998"/>
+				<text><![CDATA[Block]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="103" width="100" height="27" uuid="12a6f2b4-9077-4f9f-885c-57f751140c77"/>
+				<text><![CDATA[GramPanchayat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="401" y="103" width="100" height="27" uuid="a7bd6a07-b3dc-494b-a256-5308efbe5e86"/>
+				<text><![CDATA[Village]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="2" y="103" width="100" height="27" uuid="9a21c665-013b-4c27-829b-e978227adfce"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="103" width="100" height="27" forecolor="#000000" backcolor="#FF00CC" uuid="9e650fc3-5d94-4abe-8187-14312c4293f6"/>
+				<text><![CDATA[State]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

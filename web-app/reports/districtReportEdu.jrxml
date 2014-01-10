@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report4" pageWidth="15000" pageHeight="1000" columnWidth="14960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fd2c23cc-11b0-4eb2-b581-a23f58b03d53">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="18"/>
+	<parameter name="stateId" />
+	<parameter name="districtId" />
+	<parameter name="month" />
+	<parameter name="year" />
+	<queryString>
+		<![CDATA[SELECT
+     state.`name` AS state_name,
+     district.`name` AS district_name,
+     district.`code` AS district_code,
+     district.`state_id` AS district_state_id,
+     block.`district_id` AS block_district_id,
+     block.`name` AS block_name,
+     gram_panchayat.`name` AS gram_panchayat_name,
+     village.`gram_panchayat_id` AS village_gram_panchayat_id,
+     village.`name` AS village_name,
+     education.`id` AS education_id,
+     education.`version` AS education_version,
+     education.`edu1` AS education_edu1,
+     education.`edu10` AS education_edu10,
+     education.`edu11` AS education_edu11,
+     education.`edu12` AS education_edu12,
+     education.`edu13` AS education_edu13,
+     education.`edu14` AS education_edu14,
+     education.`edu15` AS education_edu15,
+     education.`edu16` AS education_edu16,
+     education.`edu17` AS education_edu17,
+     education.`edu2` AS education_edu2,
+     education.`edu3` AS education_edu3,
+     education.`edu4` AS education_edu4,
+     education.`edu5` AS education_edu5,
+     education.`edu6` AS education_edu6,
+     education.`edu7` AS education_edu7,
+     education.`edu8` AS education_edu8,
+     education.`edu9` AS education_edu9,
+     education.`month` AS education_month,
+     education.`village_id` AS education_village_id,
+     education.`year` AS education_year,
+     no_of_enrolment_in_edu.`institution_type` AS no_of_enrolment_in_edu_institution_type,
+     no_of_enrolment_in_edu.`month` AS no_of_enrolment_in_edu_month,
+     no_of_enrolment_in_edu.`name` AS no_of_enrolment_in_edu_name,
+     no_of_enrolment_in_edu.`new_entrants_boys` AS no_of_enrolment_in_edu_new_entrants_boys,
+     no_of_enrolment_in_edu.`new_entrants_girls` AS no_of_enrolment_in_edu_new_entrants_girls,
+     no_of_enrolment_in_edu.`no_child_never_enrolled` AS no_of_enrolment_in_edu_no_child_never_enrolled,
+     no_of_enrolment_in_edu.`no_of_teacher_female` AS no_of_enrolment_in_edu_no_of_teacher_female,
+     no_of_enrolment_in_edu.`no_of_teacher_male` AS no_of_enrolment_in_edu_no_of_teacher_male,
+     no_of_enrolment_in_edu.`reason_of_discontinuation_economic` AS no_of_enrolment_in_edu_reason_of_discontinuation_economic,
+     no_of_enrolment_in_edu.`reason_of_discontinuation_non_economic` AS no_of_enrolment_in_edu_reason_of_discontinuation_non_economic,
+     no_of_enrolment_in_edu.`student_attending_boys` AS no_of_enrolment_in_edu_student_attending_boys,
+     no_of_enrolment_in_edu.`student_attending_girls` AS no_of_enrolment_in_edu_student_attending_girls,
+     no_of_enrolment_in_edu.`student_discontinued_studies_boys` AS no_of_enrolment_in_edu_student_discontinued_studies_boys,
+     no_of_enrolment_in_edu.`student_discontinued_studies_girls` AS no_of_enrolment_in_edu_student_discontinued_studies_girls,
+     no_of_enrolment_in_edu.`student_enrolled_boys` AS no_of_enrolment_in_edu_student_enrolled_boys,
+     no_of_enrolment_in_edu.`student_enrolled_girls` AS no_of_enrolment_in_edu_student_enrolled_girls,
+     no_of_enrolment_in_edu.`village_id` AS no_of_enrolment_in_edu_village_id,
+     no_of_enrolment_in_edu.`year` AS no_of_enrolment_in_edu_year,
+     gram_panchayat.`block_id` AS gram_panchayat_block_id,
+     gram_panchayat.`id` AS gram_panchayat_id,
+     village.`id` AS village_id,
+     block.`id` AS block_id,
+     district.`id` AS district_id,
+     state.`id` AS state_id,
+     no_of_enrolment_in_collage.`no_of_new_entrants_entry_boys` AS collage_new_boys,
+     no_of_enrolment_in_collage.`no_of_new_entrants_entry_girls` AS collage_new_girls,
+     no_of_enrolment_in_collage.`no_of_student_attending_boys` AS student_attending_boys,
+     no_of_enrolment_in_collage.`no_of_student_attending_girls` AS student_attending_girls,
+     no_of_enrolment_in_collage.`no_of_student_discontinued_studies_boys` AS collage_discontinued_boys,
+      no_of_enrolment_in_collage.`no_of_student_discontinued_studies_girls` AS collage_discontinued_girls,
+     no_of_enrolment_in_collage.`no_of_student_enrolled_boys` AS collage_enrolled_boys,
+     no_of_enrolment_in_collage.`no_of_student_enrolled_girls` AS collage_enrolled_girls,
+    no_of_enrolment_in_collage.`no_of_students_enrolled_in_university_boys` AS university_enrolled_boys,
+     no_of_enrolment_in_collage.`no_of_students_enrolled_in_university_girls` AS university_enrolled_girls,
+      no_of_enrolment_in_collage.`reason_of_discontinuation_economic` AS collage_economic_discontinuation,
+     no_of_enrolment_in_collage.`reason_of_discontinuation_non_economic` AS collage_non_economic_discontinuation,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    no_of_enrolment_in_edu.`institution_type`,
+   (select sum(seb_prim.`student_enrolled_boys`) from no_of_enrolment_in_edu seb_prim where seb_prim.`village_id` = village.`id` and seb_prim.`institution_type` = 'Primary School') as seb_prim,
+   (select sum(seg_prim.`student_enrolled_girls`) from no_of_enrolment_in_edu seg_prim where seg_prim.`village_id` = village.`id` and seg_prim.`institution_type` = 'Primary School') as seg_prim,
+     (select sum(sab_prim.`student_attending_boys`) from no_of_enrolment_in_edu sab_prim where sab_prim.`village_id` = village.`id` and sab_prim.`institution_type` = 'Primary School') as sab_prim,
+ (select sum(sag_prim.`student_attending_girls`) from no_of_enrolment_in_edu sag_prim where sag_prim.`village_id` = village.`id` and sag_prim.`institution_type` = 'Primary School') as sag_prim,
+ (select sum(neb_prim.`new_entrants_boys`) from no_of_enrolment_in_edu neb_prim where neb_prim.`village_id` = village.`id` and neb_prim.`institution_type` = 'Primary School') as neb_prim,
+ (select sum(neg_prim.`new_entrants_girls`) from no_of_enrolment_in_edu neg_prim where neg_prim.`village_id` = village.`id` and neg_prim.`institution_type` = 'Primary School') as neg_prim,
+(select sum(sdsb_prim.`student_discontinued_studies_boys`) from no_of_enrolment_in_edu sdsb_prim where sdsb_prim.`village_id` = village.`id` and sdsb_prim.`institution_type` = 'Primary School') as sdsb_prim,
+(select sum(sdsg_prim.`student_discontinued_studies_girls`) from no_of_enrolment_in_edu sdsg_prim where sdsg_prim.`village_id` = village.`id` and sdsg_prim.`institution_type` = 'Primary School') as sdsg_prim,
+(select sum(rodne_prim.`reason_of_discontinuation_non_economic`) from no_of_enrolment_in_edu rodne_prim where rodne_prim.`village_id` = village.`id` and rodne_prim.`institution_type` = 'Primary School') as rodne_prim,
+(select sum(rode_prim.`reason_of_discontinuation_economic`) from no_of_enrolment_in_edu rode_prim where rode_prim.`village_id` = village.`id` and rode_prim.`institution_type` = 'Primary School') as rode_prim,
+(select sum(notm_prim.`no_of_teacher_male`) from no_of_enrolment_in_edu notm_prim where notm_prim.`village_id` = village.`id` and notm_prim.`institution_type` = 'Primary School') as notm_prim,
+(select sum(notf_prim.`no_of_teacher_female`) from no_of_enrolment_in_edu notf_prim where notf_prim.`village_id` = village.`id` and notf_prim.`institution_type` = 'Primary School') as notf_prim,
+
+ sum(no_of_enrolment_in_edu.`no_of_teacher_male`),
+
+   (select sum(seb_pprim.`student_enrolled_boys`) from no_of_enrolment_in_edu seb_pprim where seb_pprim.`village_id` = village.`id` and seb_pprim.`institution_type` = 'Pre-Primary School') as seb_pprim,
+   (select sum(seg_pprim.`student_enrolled_girls`) from no_of_enrolment_in_edu seg_pprim where seg_pprim.`village_id` = village.`id` and seg_pprim.`institution_type` = 'Pre-Primary School') as seg_pprim,
+ (select sum(sab_pprim.`student_attending_boys`) from no_of_enrolment_in_edu sab_pprim where sab_pprim.`village_id` = village.`id` and sab_pprim.`institution_type` = 'Pre-Primary School') as sab_pprim,
+ (select sum(sag_pprim.`student_attending_girls`) from no_of_enrolment_in_edu sag_pprim where sag_pprim.`village_id` = village.`id` and sag_pprim.`institution_type` = 'Pre-Primary School') as sag_pprim,
+ (select sum(neb_pprim.`new_entrants_boys`) from no_of_enrolment_in_edu neb_pprim where neb_pprim.`village_id` = village.`id` and neb_pprim.`institution_type` = 'Pre-Primary School') as neb_pprim,
+ (select sum(neg_pprim.`new_entrants_girls`) from no_of_enrolment_in_edu neg_pprim where neg_pprim.`village_id` = village.`id` and neg_pprim.`institution_type` = 'Pre-Primary School') as neg_pprim,
+(select sum(sdsb_pprim.`student_discontinued_studies_boys`) from no_of_enrolment_in_edu sdsb_pprim where sdsb_pprim.`village_id` = village.`id` and sdsb_pprim.`institution_type` = 'Pre-Primary School') as sdsb_pprim,
+(select sum(sdsg_pprim.`student_discontinued_studies_girls`) from no_of_enrolment_in_edu sdsg_pprim where sdsg_pprim.`village_id` = village.`id` and sdsg_pprim.`institution_type` = 'Pre-Primary School') as sdsg_pprim,
+(select sum(rodne_pprim.`reason_of_discontinuation_non_economic`) from no_of_enrolment_in_edu rodne_pprim where rodne_pprim.`village_id` = village.`id` and rodne_pprim.`institution_type` = 'Pre-Primary School') as rodne_pprim,
+(select sum(rode_pprim.`reason_of_discontinuation_economic`) from no_of_enrolment_in_edu rode_pprim where rode_pprim.`village_id` = village.`id` and rode_pprim.`institution_type` = 'Pre-Primary School') as rode_pprim,
+(select sum(notm_pprim.`no_of_teacher_male`) from no_of_enrolment_in_edu notm_pprim where notm_pprim.`village_id` = village.`id` and notm_pprim.`institution_type` = 'Pre-Primary School') as notm_pprim,
+(select sum(notf_pprim.`no_of_teacher_female`) from no_of_enrolment_in_edu notf_pprim where notf_pprim.`village_id` = village.`id` and notf_pprim.`institution_type` = 'Pre-Primary School') as notf_pprim,
+
+
+   (select sum(seb_mid.`student_enrolled_boys`) from no_of_enrolment_in_edu seb_mid where seb_mid.`village_id` = village.`id` and seb_mid.`institution_type` = 'Middle School') as seb_mid,
+   (select sum(seg_mid.`student_enrolled_girls`) from no_of_enrolment_in_edu seg_mid where seg_mid.`village_id` = village.`id` and seg_mid.`institution_type` = 'Middle School') as seg_mid,
+ (select sum(sab_mid.`student_attending_boys`) from no_of_enrolment_in_edu sab_mid where sab_mid.`village_id` = village.`id` and sab_mid.`institution_type` = 'Middle School') as sab_mid,
+ (select sum(sag_mid.`student_attending_girls`) from no_of_enrolment_in_edu sag_mid where sag_mid.`village_id` = village.`id` and sag_mid.`institution_type` = 'Middle School') as sag_mid,
+ (select sum(neb_mid.`new_entrants_boys`) from no_of_enrolment_in_edu neb_mid where neb_mid.`village_id` = village.`id` and neb_mid.`institution_type` = 'Middle School') as neb_mid,
+ (select sum(neg_mid.`new_entrants_girls`) from no_of_enrolment_in_edu neg_mid where neg_mid.`village_id` = village.`id` and neg_mid.`institution_type` = 'Middle School') as neg_mid,
+(select sum(sdsb_mid.`student_discontinued_studies_boys`) from no_of_enrolment_in_edu sdsb_mid where sdsb_mid.`village_id` = village.`id` and sdsb_mid.`institution_type` = 'Middle School') as sdsb_mid,
+(select sum(sdsg_mid.`student_discontinued_studies_girls`) from no_of_enrolment_in_edu sdsg_mid where sdsg_mid.`village_id` = village.`id` and sdsg_mid.`institution_type` = 'Middle School') as sdsg_mid,
+(select sum(rodne_mid.`reason_of_discontinuation_non_economic`) from no_of_enrolment_in_edu rodne_mid where rodne_mid.`village_id` = village.`id` and rodne_mid.`institution_type` = 'Middle School') as rodne_mid,
+(select sum(rode_mid.`reason_of_discontinuation_economic`) from no_of_enrolment_in_edu rode_mid where rode_mid.`village_id` = village.`id` and rode_mid.`institution_type` = 'Middle School') as rode_mid,
+(select sum(notm_mid.`no_of_teacher_male`) from no_of_enrolment_in_edu notm_mid where notm_mid.`village_id` = village.`id` and notm_mid.`institution_type` = 'Middle School') as notm_mid,
+(select sum(notf_mid.`no_of_teacher_female`) from no_of_enrolment_in_edu notf_mid where notf_mid.`village_id` = village.`id` and notf_mid.`institution_type` = 'Middle School') as notf_mid,
+
+
+(select sum(seb_hs.`student_enrolled_boys`) from no_of_enrolment_in_edu seb_hs where seb_hs.`village_id` = village.`id` and seb_hs.`institution_type` = 'High School') as seb_hs,
+   (select sum(seg_hs.`student_enrolled_girls`) from no_of_enrolment_in_edu seg_hs where seg_hs.`village_id` = village.`id` and seg_hs.`institution_type` = 'High School') as seg_hs,
+ (select sum(sab_hs.`student_attending_boys`) from no_of_enrolment_in_edu sab_hs where sab_hs.`village_id` = village.`id` and sab_hs.`institution_type` = 'High School') as sab_hs,
+ (select sum(sag_hs.`student_attending_girls`) from no_of_enrolment_in_edu sag_hs where sag_hs.`village_id` = village.`id` and sag_hs.`institution_type` = 'High School') as sag_hs,
+ (select sum(neb_hs.`new_entrants_boys`) from no_of_enrolment_in_edu neb_hs where neb_hs.`village_id` = village.`id` and neb_hs.`institution_type` = 'High School') as neb_hs,
+ (select sum(neg_hs.`new_entrants_girls`) from no_of_enrolment_in_edu neg_hs where neg_hs.`village_id` = village.`id` and neg_hs.`institution_type` = 'High School') as neg_hs,
+(select sum(sdsb_hs.`student_discontinued_studies_boys`) from no_of_enrolment_in_edu sdsb_hs where sdsb_hs.`village_id` = village.`id` and sdsb_hs.`institution_type` = 'High School') as sdsb_hs,
+(select sum(sdsg_hs.`student_discontinued_studies_girls`) from no_of_enrolment_in_edu sdsg_hs where sdsg_hs.`village_id` = village.`id` and sdsg_hs.`institution_type` = 'High School') as sdsg_hs,
+(select sum(rodne_hs.`reason_of_discontinuation_non_economic`) from no_of_enrolment_in_edu rodne_hs where rodne_hs.`village_id` = village.`id` and rodne_hs.`institution_type` = 'High School') as rodne_hs,
+(select sum(rode_hs.`reason_of_discontinuation_economic`) from no_of_enrolment_in_edu rode_hs where rode_hs.`village_id` = village.`id` and rode_hs.`institution_type` = 'High School') as rode_hs,
+(select sum(notm_hs.`no_of_teacher_male`) from no_of_enrolment_in_edu notm_hs where notm_hs.`village_id` = village.`id` and notm_hs.`institution_type` = 'High School') as notm_hs,
+(select sum(notf_hs.`no_of_teacher_female`) from no_of_enrolment_in_edu notf_hs where notf_hs.`village_id` = village.`id` and notf_hs.`institution_type` = 'High School') as notf_hs,
+
+
+
+
+(select sum(seb_sss.`student_enrolled_boys`) from no_of_enrolment_in_edu seb_sss where seb_sss.`village_id` = village.`id` and seb_sss.`institution_type` = 'Senior Secondary School') as seb_sss,
+   (select sum(seg_sss.`student_enrolled_girls`) from no_of_enrolment_in_edu seg_sss where seg_sss.`village_id` = village.`id` and seg_sss.`institution_type` = 'Senior Secondary School') as seg_sss,
+ (select sum(sab_sss.`student_attending_boys`) from no_of_enrolment_in_edu sab_sss where sab_sss.`village_id` = village.`id` and sab_sss.`institution_type` = 'Senior Secondary School') as sab_sss,
+ (select sum(sag_sss.`student_attending_girls`) from no_of_enrolment_in_edu sag_sss where sag_sss.`village_id` = village.`id` and sag_sss.`institution_type` = 'Senior Secondary School') as sag_sss,
+ (select sum(neb_sss.`new_entrants_boys`) from no_of_enrolment_in_edu neb_sss where neb_sss.`village_id` = village.`id` and neb_sss.`institution_type` = 'Senior Secondary School') as neb_sss,
+ (select sum(neg_sss.`new_entrants_girls`) from no_of_enrolment_in_edu neg_sss where neg_sss.`village_id` = village.`id` and neg_sss.`institution_type` = 'Senior Secondary School') as neg_sss,
+(select sum(sdsb_sss.`student_discontinued_studies_boys`) from no_of_enrolment_in_edu sdsb_sss where sdsb_sss.`village_id` = village.`id` and sdsb_sss.`institution_type` = 'Senior Secondary School') as sdsb_sss,
+(select sum(sdsg_sss.`student_discontinued_studies_girls`) from no_of_enrolment_in_edu sdsg_sss where sdsg_sss.`village_id` = village.`id` and sdsg_sss.`institution_type` = 'Senior Secondary School') as sdsg_sss,
+(select sum(rodne_sss.`reason_of_discontinuation_non_economic`) from no_of_enrolment_in_edu rodne_sss where rodne_sss.`village_id` = village.`id` and rodne_sss.`institution_type` = 'Senior Secondary School') as rodne_sss,
+(select sum(rode_sss.`reason_of_discontinuation_economic`) from no_of_enrolment_in_edu rode_sss where rode_sss.`village_id` = village.`id` and rode_sss.`institution_type` = 'Senior Secondary School') as rode_sss,
+(select sum(notm_sss.`no_of_teacher_male`) from no_of_enrolment_in_edu notm_sss where notm_sss.`village_id` = village.`id` and notm_sss.`institution_type` = 'Senior Secondary School') as notm_sss,
+(select sum(notf_sss.`no_of_teacher_female`) from no_of_enrolment_in_edu notf_sss where notf_sss.`village_id` = village.`id` and notf_sss.`institution_type` = 'Senior Secondary School') as notf_sss
+
+
+
+
+
+
+
+
+FROM
+     `state` state INNER JOIN `district` district ON state.`id` = district.`state_id`
+     INNER JOIN `block` block ON district.`id` = block.`district_id`
+     INNER JOIN `gram_panchayat` gram_panchayat ON block.`id` = gram_panchayat.`block_id`
+     INNER JOIN `village` village ON gram_panchayat.`id` = village.`gram_panchayat_id`
+     INNER JOIN `education` education ON village.`id` = education.`village_id`
+    LEFT OUTER JOIN `no_of_enrolment_in_edu` no_of_enrolment_in_edu ON village.`id` = no_of_enrolment_in_edu.`village_id`
+LEFT OUTER JOIN `no_of_enrolment_in_college` no_of_enrolment_in_collage ON village.`id`=no_of_enrolment_in_edu.`village_id`
+LEFT OUTER JOIN
+`no_of_enrolment_in_other_tech_course` no_of_enrolment_in_other_tech_course ON village.`id`= no_of_enrolment_in_edu.`village_id`
+
+
+WHERE
+ state_id = $P!{stateId} and district.`id`= $P!{districtId} and education.month=$P!{month} and education.year=$P!{year}
+group by no_of_enrolment_in_edu.`village_id`
+order by no_of_enrolment_in_edu.`village_id`]]>
+	</queryString>
+	<field name="state_name" class="java.lang.String"/>
+	<field name="district_name" class="java.lang.String"/>
+	<field name="district_code" class="java.lang.String"/>
+	<field name="district_state_id" class="java.lang.Long"/>
+	<field name="block_district_id" class="java.lang.Long"/>
+	<field name="block_name" class="java.lang.String"/>
+	<field name="gram_panchayat_name" class="java.lang.String"/>
+	<field name="village_gram_panchayat_id" class="java.lang.Long"/>
+	<field name="village_name" class="java.lang.String"/>
+	<field name="education_id" class="java.lang.Long"/>
+	<field name="education_version" class="java.lang.Long"/>
+	<field name="education_edu1" class="java.lang.String"/>
+	<field name="education_edu10" class="java.lang.Integer"/>
+	<field name="education_edu11" class="java.lang.Integer"/>
+	<field name="education_edu12" class="java.lang.Integer"/>
+	<field name="education_edu13" class="java.lang.Integer"/>
+	<field name="education_edu14" class="java.lang.Integer"/>
+	<field name="education_edu15" class="java.lang.Integer"/>
+	<field name="education_edu16" class="java.lang.Integer"/>
+	<field name="education_edu17" class="java.lang.Integer"/>
+	<field name="education_edu2" class="java.lang.String"/>
+	<field name="education_edu3" class="java.lang.Integer"/>
+	<field name="education_edu4" class="java.lang.Integer"/>
+	<field name="education_edu5" class="java.lang.Integer"/>
+	<field name="education_edu6" class="java.lang.Integer"/>
+	<field name="education_edu7" class="java.lang.Integer"/>
+	<field name="education_edu8" class="java.lang.Integer"/>
+	<field name="education_edu9" class="java.lang.Integer"/>
+	<field name="education_month" class="java.lang.Integer"/>
+	<field name="education_village_id" class="java.lang.Long"/>
+	<field name="education_year" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_institution_type" class="java.lang.String"/>
+	<field name="no_of_enrolment_in_edu_month" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_name" class="java.lang.String"/>
+	<field name="no_of_enrolment_in_edu_new_entrants_boys" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_new_entrants_girls" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_no_child_never_enrolled" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_no_of_teacher_female" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_no_of_teacher_male" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_reason_of_discontinuation_economic" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_reason_of_discontinuation_non_economic" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_student_attending_boys" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_student_attending_girls" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_student_discontinued_studies_boys" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_student_discontinued_studies_girls" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_student_enrolled_boys" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_student_enrolled_girls" class="java.lang.Integer"/>
+	<field name="no_of_enrolment_in_edu_village_id" class="java.lang.Long"/>
+	<field name="no_of_enrolment_in_edu_year" class="java.lang.Integer"/>
+	<field name="gram_panchayat_block_id" class="java.lang.Long"/>
+	<field name="gram_panchayat_id" class="java.lang.Long"/>
+	<field name="village_id" class="java.lang.Long"/>
+	<field name="block_id" class="java.lang.Long"/>
+	<field name="district_id" class="java.lang.Long"/>
+	<field name="state_id" class="java.lang.Long"/>
+	<field name="collage_new_boys" class="java.lang.Integer"/>
+	<field name="collage_new_girls" class="java.lang.Integer"/>
+	<field name="student_attending_boys" class="java.lang.Integer"/>
+	<field name="student_attending_girls" class="java.lang.Integer"/>
+	<field name="collage_discontinued_boys" class="java.lang.Integer"/>
+	<field name="collage_discontinued_girls" class="java.lang.Integer"/>
+	<field name="collage_enrolled_boys" class="java.lang.Integer"/>
+	<field name="collage_enrolled_girls" class="java.lang.Integer"/>
+	<field name="university_enrolled_boys" class="java.lang.Integer"/>
+	<field name="university_enrolled_girls" class="java.lang.Integer"/>
+	<field name="collage_economic_discontinuation" class="java.lang.Integer"/>
+	<field name="collage_non_economic_discontinuation" class="java.lang.Integer"/>
+	<field name="institution_type" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="seb_prim" class="java.math.BigDecimal"/>
+	<field name="seg_prim" class="java.math.BigDecimal"/>
+	<field name="sab_prim" class="java.math.BigDecimal"/>
+	<field name="sag_prim" class="java.math.BigDecimal"/>
+	<field name="neb_prim" class="java.math.BigDecimal"/>
+	<field name="neg_prim" class="java.math.BigDecimal"/>
+	<field name="sdsb_prim" class="java.math.BigDecimal"/>
+	<field name="sdsg_prim" class="java.math.BigDecimal"/>
+	<field name="rodne_prim" class="java.math.BigDecimal"/>
+	<field name="rode_prim" class="java.math.BigDecimal"/>
+	<field name="notm_prim" class="java.math.BigDecimal"/>
+	<field name="notf_prim" class="java.math.BigDecimal"/>
+	<field name="sum(no_of_enrolment_in_edu.`no_of_teacher_male`)" class="java.math.BigDecimal"/>
+	<field name="seb_pprim" class="java.math.BigDecimal"/>
+	<field name="seg_pprim" class="java.math.BigDecimal"/>
+	<field name="sab_pprim" class="java.math.BigDecimal"/>
+	<field name="sag_pprim" class="java.math.BigDecimal"/>
+	<field name="neb_pprim" class="java.math.BigDecimal"/>
+	<field name="neg_pprim" class="java.math.BigDecimal"/>
+	<field name="sdsb_pprim" class="java.math.BigDecimal"/>
+	<field name="sdsg_pprim" class="java.math.BigDecimal"/>
+	<field name="rodne_pprim" class="java.math.BigDecimal"/>
+	<field name="rode_pprim" class="java.math.BigDecimal"/>
+	<field name="notm_pprim" class="java.math.BigDecimal"/>
+	<field name="notf_pprim" class="java.math.BigDecimal"/>
+	<field name="seb_mid" class="java.math.BigDecimal"/>
+	<field name="seg_mid" class="java.math.BigDecimal"/>
+	<field name="sab_mid" class="java.math.BigDecimal"/>
+	<field name="sag_mid" class="java.math.BigDecimal"/>
+	<field name="neb_mid" class="java.math.BigDecimal"/>
+	<field name="neg_mid" class="java.math.BigDecimal"/>
+	<field name="sdsb_mid" class="java.math.BigDecimal"/>
+	<field name="sdsg_mid" class="java.math.BigDecimal"/>
+	<field name="rodne_mid" class="java.math.BigDecimal"/>
+	<field name="rode_mid" class="java.math.BigDecimal"/>
+	<field name="notm_mid" class="java.math.BigDecimal"/>
+	<field name="notf_mid" class="java.math.BigDecimal"/>
+	<field name="seb_hs" class="java.math.BigDecimal"/>
+	<field name="seg_hs" class="java.math.BigDecimal"/>
+	<field name="sab_hs" class="java.math.BigDecimal"/>
+	<field name="sag_hs" class="java.math.BigDecimal"/>
+	<field name="neb_hs" class="java.math.BigDecimal"/>
+	<field name="neg_hs" class="java.math.BigDecimal"/>
+	<field name="sdsb_hs" class="java.math.BigDecimal"/>
+	<field name="sdsg_hs" class="java.math.BigDecimal"/>
+	<field name="rodne_hs" class="java.math.BigDecimal"/>
+	<field name="rode_hs" class="java.math.BigDecimal"/>
+	<field name="notm_hs" class="java.math.BigDecimal"/>
+	<field name="notf_hs" class="java.math.BigDecimal"/>
+	<field name="seb_sss" class="java.math.BigDecimal"/>
+	<field name="seg_sss" class="java.math.BigDecimal"/>
+	<field name="sab_sss" class="java.math.BigDecimal"/>
+	<field name="sag_sss" class="java.math.BigDecimal"/>
+	<field name="neb_sss" class="java.math.BigDecimal"/>
+	<field name="neg_sss" class="java.math.BigDecimal"/>
+	<field name="sdsb_sss" class="java.math.BigDecimal"/>
+	<field name="sdsg_sss" class="java.math.BigDecimal"/>
+	<field name="rodne_sss" class="java.math.BigDecimal"/>
+	<field name="rode_sss" class="java.math.BigDecimal"/>
+	<field name="notm_sss" class="java.math.BigDecimal"/>
+	<field name="notf_sss" class="java.math.BigDecimal"/>
+	<group name="district">
+		<groupExpression><![CDATA[$F{district_id}]]></groupExpression>
+		<groupHeader>
+			<band height="43">
+				<textField>
+					<reportElement x="100" y="22" width="100" height="20" uuid="1e6ac1da-fb41-4a7a-ad6d-791e208b71eb"/>
+					<textFieldExpression><![CDATA[$F{district_name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="block">
+		<groupExpression><![CDATA[$F{block_id}]]></groupExpression>
+		<groupHeader>
+			<band height="53">
+				<textField>
+					<reportElement x="200" y="32" width="100" height="20" uuid="a6a010e8-8723-477a-819b-8c7a4d3419e7"/>
+					<textFieldExpression><![CDATA[$F{block_name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="grampanchayat">
+		<groupExpression><![CDATA[$F{gram_panchayat_id}]]></groupExpression>
+		<groupHeader>
+			<band height="49">
+				<textField>
+					<reportElement x="300" y="14" width="100" height="20" uuid="47d4304d-5034-4318-beb2-0580f8089803"/>
+					<textFieldExpression><![CDATA[$F{gram_panchayat_name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="villages">
+		<groupExpression><![CDATA[$F{village_id}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement x="400" y="30" width="123" height="20" uuid="4b6ce9e6-4a3a-44e1-91ed-8fbe9431d694"/>
+					<textFieldExpression><![CDATA[$F{village_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="523" y="30" width="200" height="20" uuid="ce39c2fd-8605-4674-a34e-573d71edafe6"/>
+					<textFieldExpression><![CDATA[$F{education_edu3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="723" y="30" width="100" height="20" uuid="5ffe704d-582b-4ec1-8bd9-dbb9e2d4bfcf"/>
+					<textFieldExpression><![CDATA[$F{education_edu4}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="823" y="30" width="100" height="20" uuid="3b159185-cef4-442d-8f72-a389634cfdc9"/>
+					<textFieldExpression><![CDATA[$F{education_edu5}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="923" y="30" width="100" height="20" uuid="fdc87ab9-a7a7-4fe1-94dd-d05dffc650c6"/>
+					<textFieldExpression><![CDATA[$F{education_edu6}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1023" y="30" width="100" height="20" uuid="85b00f11-dc1e-4bf6-a87b-af10c0b43f09"/>
+					<textFieldExpression><![CDATA[$F{education_edu7}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1123" y="30" width="100" height="20" uuid="5a7fb50e-d8a1-4a30-b33d-a3567b8fb227"/>
+					<textFieldExpression><![CDATA[$F{education_edu8}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1223" y="30" width="125" height="20" uuid="7533b09f-c988-4844-bc76-e2da5f51509c"/>
+					<textFieldExpression><![CDATA[$F{education_edu9}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3878" y="30" width="101" height="20" uuid="50bb8257-a21f-47a1-a1b2-512f7eb5189a"/>
+					<textFieldExpression><![CDATA[$F{seg_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3754" y="30" width="124" height="20" uuid="a3f0356a-9017-47a9-b80a-9d3dc41765bf"/>
+					<textFieldExpression><![CDATA[$F{seb_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1805" y="30" width="136" height="20" uuid="c34bb898-d500-460e-a290-97c5a98f1f18"/>
+					<textFieldExpression><![CDATA[$F{seb_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1644" y="30" width="161" height="20" uuid="f9ecde1b-8be5-415a-9dee-de6b1fd410b9"/>
+					<textFieldExpression><![CDATA[$F{seg_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4086" y="30" width="118" height="20" uuid="210b1eda-a7f0-46fd-9dcd-ee0144ebd287"/>
+					<textFieldExpression><![CDATA[$F{sab_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3979" y="30" width="107" height="20" uuid="0337cb8d-41c5-4679-8a4f-11b880369a3c"/>
+					<textFieldExpression><![CDATA[$F{sag_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2102" y="30" width="161" height="20" uuid="b199c8a6-d83e-4e86-9d82-363124159e8b"/>
+					<textFieldExpression><![CDATA[$F{sab_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1941" y="30" width="161" height="20" uuid="2136572d-5324-4777-9b4c-e89b11ef7d7a"/>
+					<textFieldExpression><![CDATA[$F{sag_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4204" y="30" width="90" height="20" uuid="27a4d223-0f12-48ed-9bda-eaf83d90d80b"/>
+					<textFieldExpression><![CDATA[$F{neb_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4294" y="30" width="97" height="20" uuid="1a5971f5-2eea-4883-8b3d-31ccdbc9507e"/>
+					<textFieldExpression><![CDATA[$F{neg_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2263" y="30" width="94" height="20" uuid="b4acefde-6bd6-40f7-a8a4-8abb222d26a2"/>
+					<textFieldExpression><![CDATA[$F{neb_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2357" y="30" width="94" height="20" uuid="28872bc6-df5a-4435-8a82-fe1a06b7fc9c"/>
+					<textFieldExpression><![CDATA[$F{neg_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2451" y="30" width="165" height="20" uuid="c8756fef-1e1a-4240-a907-a09e0e1f15bf"/>
+					<textFieldExpression><![CDATA[$F{sdsb_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2616" y="30" width="197" height="20" uuid="0c5f3ab8-d22c-4bb8-ad19-cae3c324375a"/>
+					<textFieldExpression><![CDATA[$F{sdsg_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2813" y="30" width="227" height="20" uuid="98a30380-6a76-4c2f-8ff2-de88490b9610"/>
+					<textFieldExpression><![CDATA[$F{rode_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3040" y="30" width="255" height="20" uuid="1e08375f-6b3a-4745-9bd6-5dc2cf30930b"/>
+					<textFieldExpression><![CDATA[$F{rodne_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3297" y="30" width="100" height="20" uuid="b8dc4a10-566a-4e8c-8f7d-1bf670f087dd"/>
+					<textFieldExpression><![CDATA[$F{notm_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3399" y="30" width="100" height="20" uuid="4a474275-00c2-4594-ab65-b532c6de8602"/>
+					<textFieldExpression><![CDATA[$F{notf_pprim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4559" y="30" width="197" height="20" uuid="33ad532f-cf1b-410b-a786-0bacb0be00ba"/>
+					<textFieldExpression><![CDATA[$F{sdsg_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4983" y="30" width="255" height="20" uuid="a67d63f5-175c-4a36-9065-f8016db636e9"/>
+					<textFieldExpression><![CDATA[$F{rodne_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4756" y="30" width="227" height="20" uuid="fddeb973-a764-4cf6-bdc9-a96c8e1e3685"/>
+					<textFieldExpression><![CDATA[$F{rode_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="4391" y="30" width="168" height="20" uuid="106c6faa-d7bf-49b2-a33a-7f07353b222b"/>
+					<textFieldExpression><![CDATA[$F{sdsb_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5342" y="30" width="100" height="20" uuid="c0b9ebf1-d813-4e80-80af-78e97834bbcb"/>
+					<textFieldExpression><![CDATA[$F{notf_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5240" y="30" width="100" height="20" uuid="fb94bd20-cfea-4c27-b8b8-0efbc73a81ab"/>
+					<textFieldExpression><![CDATA[$F{notm_prim}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6783" y="30" width="255" height="20" uuid="0d52c8b9-673f-41f9-82f4-e322d430ed03"/>
+					<textFieldExpression><![CDATA[$F{rodne_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5779" y="30" width="107" height="20" uuid="3a40ee39-072e-43be-a29e-b98a53c74ca7"/>
+					<textFieldExpression><![CDATA[$F{sag_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6359" y="30" width="197" height="20" uuid="916da0ba-7f03-4c10-abef-83215cf48cda"/>
+					<textFieldExpression><![CDATA[$F{sdsg_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5510" y="30" width="130" height="20" uuid="836d88ae-4671-47ac-ac0e-be63a83a6f55"/>
+					<textFieldExpression><![CDATA[$F{seb_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6094" y="30" width="97" height="20" uuid="ce4cb868-27ce-42d2-9b3b-96932bb3027b"/>
+					<textFieldExpression><![CDATA[$F{neg_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7142" y="30" width="100" height="20" uuid="7daefda7-1e47-451d-a102-0e9aff93bab4"/>
+					<textFieldExpression><![CDATA[$F{notf_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7040" y="30" width="100" height="20" uuid="fab3deb1-2d4a-4a24-85e8-f9ab69ccaad3"/>
+					<textFieldExpression><![CDATA[$F{notm_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5640" y="30" width="139" height="20" uuid="9cd4585c-6b81-4840-ab00-d8778ba9873f"/>
+					<textFieldExpression><![CDATA[$F{seg_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6558" y="30" width="227" height="20" uuid="c6c23556-d1eb-49aa-9feb-9fded062c3fc"/>
+					<textFieldExpression><![CDATA[$F{rode_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="5886" y="30" width="118" height="20" uuid="ad315ff5-1899-4b4e-af8c-4466162cf396"/>
+					<textFieldExpression><![CDATA[$F{sab_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6191" y="30" width="168" height="20" uuid="bd34cc32-5fb2-4950-8fff-e6c9b96f4d9c"/>
+					<textFieldExpression><![CDATA[$F{sdsb_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="6004" y="30" width="90" height="20" uuid="77f2ac54-6be0-4aac-9f15-03a9fc67f2a2"/>
+					<textFieldExpression><![CDATA[$F{neb_mid}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7317" y="30" width="130" height="20" uuid="1aabba21-73c1-47b0-ae7f-4f966a05c53a"/>
+					<textFieldExpression><![CDATA[$F{seb_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="8328" y="30" width="227" height="20" uuid="ca56ad75-f5ef-4e0e-b69f-a86b033866e5"/>
+					<textFieldExpression><![CDATA[$F{rode_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7693" y="30" width="118" height="20" uuid="f0c744bb-d734-499b-85aa-7ae7c5304788"/>
+					<textFieldExpression><![CDATA[$F{sab_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="8798" y="30" width="100" height="20" uuid="616e456b-e92b-4597-8f44-f753bf51b32e"/>
+					<textFieldExpression><![CDATA[$F{notm_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="8543" y="30" width="255" height="20" uuid="f7596e63-e4fd-4b51-b16f-536b7adfe1ab"/>
+					<textFieldExpression><![CDATA[$F{rodne_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7447" y="30" width="139" height="20" uuid="021469c8-f5b6-4125-8a62-2e04ee45e29b"/>
+					<textFieldExpression><![CDATA[$F{seg_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="8898" y="30" width="71" height="20" uuid="737d06e5-77b4-4856-929b-0eb63caa4c19"/>
+					<textFieldExpression><![CDATA[$F{notf_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7998" y="30" width="168" height="20" uuid="bd2e2d1f-b2a7-474d-8b62-56d3f1190641"/>
+					<textFieldExpression><![CDATA[$F{sdsb_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7811" y="30" width="90" height="20" uuid="ace8c1fb-6b0f-4c36-b743-c91c4ab8abc6"/>
+					<textFieldExpression><![CDATA[$F{neb_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7586" y="30" width="107" height="20" uuid="10b53277-1ff4-4de7-95ae-df564d3ff775"/>
+					<textFieldExpression><![CDATA[$F{sag_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="8166" y="30" width="162" height="20" uuid="add5c3d3-7f6e-4c8b-a555-73da475332be"/>
+					<textFieldExpression><![CDATA[$F{sdsg_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7901" y="30" width="97" height="20" uuid="c6fec7d9-187b-4c0c-bbff-d239133255ae"/>
+					<textFieldExpression><![CDATA[$F{neg_hs}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10674" y="30" width="100" height="20" uuid="d1d087fd-d03e-4c3c-ae53-954d4a336195"/>
+					<textFieldExpression><![CDATA[$F{notm_sss}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="9993" y="30" width="197" height="20" uuid="c7cc514e-ddc4-4734-9b15-f1dd57b8b44a"/>
+					<textFieldExpression><![CDATA[$F{sdsg_sss}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="9728" y="30" width="97" height="20" uuid="e9a719b0-9b89-40fe-b1cc-4623ff1d5a3d"/>
+					<textFieldExpression><![CDATA[$F{neg_sss}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="9520" y="30" width="118" height="20" uuid="9578e460-bdd7-42ce-b92c-ab8d770681af"/>
+					<textFieldExpression><![CDATA[$F{sab_sss}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="9413" y="30" width="107" height="20" uuid="539c6057-c56c-4d43-9196-6c57d37e4c1f"/>
+					<textFieldExpression><![CDATA[$F{sag_sss}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="9825" y="30" width="168" height="20" uuid="feca1de2-345c-4f21-aafa-a1e1aef74d51"/>
+					<textFieldExpression><![CDATA[$F{sdsb_sss}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="9244" y="30" width="169" height="20" uuid="6c35da0a-2bd5-45d0-8cd3-ebeb793ad087"/>
+					<textFieldExpression><![CDATA[$F{seg_sss}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10192" y="30" width="227" height="20" uuid="61dac96f-904a-4eb0-b793-8abf0fd8f9dd"/>
+					<textFieldExpression><![CDATA[$F{rode_sss}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10417" y="30" width="255" height="20" uuid="9edb033e-64ba-4ee9-9933-694031fcd7fa"/>
+					<textFieldExpression><![CDATA[$F{rodne_sss}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="9638" y="30" width="90" height="20" uuid="e1e0fc47-c887-42d0-9049-541c204f9147"/>
+					<textFieldExpression><![CDATA[$F{neb_sss}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="9071" y="30" width="184" height="20" uuid="a0016d97-d409-420f-a59b-722066c47066"/>
+					<textFieldExpression><![CDATA[$F{seb_sss}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10778" y="30" width="100" height="20" uuid="3ef2e169-ead0-47d6-9942-39008b53785e"/>
+					<textFieldExpression><![CDATA[$F{notf_sss}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<staticText>
+				<reportElement x="423" y="91" width="100" height="20" uuid="53ae6d27-f77e-46ef-925e-d36ccdccecbe"/>
+				<text><![CDATA[village name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="523" y="91" width="200" height="20" uuid="997ee40e-834f-4fc5-a495-da25daf746db"/>
+				<text><![CDATA[No. of Adult education center functioning]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="723" y="91" width="100" height="20" uuid="23c977f4-2937-4c68-a043-d9479e350562"/>
+				<text><![CDATA[No. of Adult educated]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="823" y="91" width="100" height="20" uuid="f6fdfe2c-a6be-43bf-a14c-0eac8161507f"/>
+				<text><![CDATA[Pre- primary school]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="923" y="91" width="100" height="20" uuid="e3f6ccce-a608-482a-8029-95b237e17a26"/>
+				<text><![CDATA[Primary school]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1023" y="91" width="100" height="20" uuid="a11ae3be-91c9-4320-8b58-a6e0d6804fbf"/>
+				<text><![CDATA[Middle schoole]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1123" y="91" width="100" height="20" uuid="462e82c8-4cf3-4f1e-8aa8-b8341d4359f0"/>
+				<text><![CDATA[Secondary school]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1223" y="91" width="125" height="20" uuid="4f6d7929-f5a4-4c6c-aab2-50b42f68d2aa"/>
+				<text><![CDATA[Higher Secondary school]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1644" y="91" width="161" height="20" uuid="1fb99367-cb56-4838-b068-4cdab639493e"/>
+				<text><![CDATA[total girls in pre-primary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1805" y="91" width="135" height="20" uuid="4ef20107-ad6d-4e41-9424-b87de19da2c9"/>
+				<text><![CDATA[total boys in pre-primary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1644" y="55" width="744" height="20" uuid="480df5dd-b7b0-466d-98d8-ead4400ef836"/>
+				<text><![CDATA[pre-primary school data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3754" y="55" width="925" height="20" uuid="eccc13ef-3162-4729-a932-5cf1f00a218a"/>
+				<text><![CDATA[primary school data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3878" y="91" width="101" height="20" uuid="1ba701f9-37aa-48bd-85eb-56e2799f7559"/>
+				<text><![CDATA[total girls in primary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3754" y="91" width="124" height="20" uuid="caa79251-82d9-4955-85ff-deaa13636efe"/>
+				<text><![CDATA[total boys in primary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1941" y="91" width="161" height="20" uuid="30f6443a-3670-4662-af3c-d56dafa5431b"/>
+				<text><![CDATA[student attending girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4086" y="91" width="118" height="20" uuid="c99420d0-c179-47a5-aeb2-368bb47274d2"/>
+				<text><![CDATA[student attending boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3979" y="91" width="107" height="20" uuid="111bdc95-9f0e-42ae-a7d3-3ca3eed11728"/>
+				<text><![CDATA[student attending girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2102" y="91" width="161" height="20" uuid="65bd3919-0003-4347-b1db-e661cb883852"/>
+				<text><![CDATA[student attending boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4204" y="91" width="90" height="20" uuid="d2df11e3-4f3a-4075-9c86-9e5c3853ddff"/>
+				<text><![CDATA[new entrance boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4294" y="91" width="97" height="20" uuid="8bed6897-12b5-42df-bc6c-66840ee604b4"/>
+				<text><![CDATA[new entrance girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2263" y="91" width="94" height="20" uuid="4e67f8ae-83a8-44ac-b267-7f42e948cd3d"/>
+				<text><![CDATA[new entrance boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2357" y="91" width="94" height="20" uuid="f5d2b80c-f96e-4839-b672-6587df30c8b6"/>
+				<text><![CDATA[new entrance girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2451" y="91" width="165" height="20" uuid="72928925-229a-4b6a-8746-e898e5527508"/>
+				<text><![CDATA[student discontinued studies boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2616" y="91" width="197" height="20" uuid="ea96c812-712a-4917-9f3e-ade54efa5946"/>
+				<text><![CDATA[student discontinued studies girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2813" y="91" width="227" height="20" uuid="ee31f3c6-e56b-45d2-a964-437687a2daf6"/>
+				<text><![CDATA[ reason for discontinuetion of studies economic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3040" y="91" width="255" height="20" uuid="db1fa574-e870-4566-b70a-9984ed7e743c"/>
+				<text><![CDATA[ reason for discontinuetion of studies non-economic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3295" y="91" width="102" height="20" uuid="693f08c2-16e4-4188-8003-caf653a23f45"/>
+				<text><![CDATA[no of male teachers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3397" y="91" width="102" height="20" uuid="912d2f63-a974-4007-9909-b0bfe2caba8c"/>
+				<text><![CDATA[no of female teachers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4753" y="91" width="227" height="20" uuid="6e110dfc-1224-4a4d-8834-b27377977dfe"/>
+				<text><![CDATA[ reason for discontinuetion of studies economic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5337" y="91" width="102" height="20" uuid="fb926b5b-7f68-41c9-83d9-ccb76dd5d856"/>
+				<text><![CDATA[no of female teachers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4556" y="91" width="197" height="20" uuid="5817ed80-86eb-4474-9065-0574ba9949a0"/>
+				<text><![CDATA[student discontinued studies girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4391" y="91" width="165" height="20" uuid="0f7f5603-338f-4cc3-8fdc-b8705f683db1"/>
+				<text><![CDATA[student discontinued studies boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5235" y="91" width="102" height="20" uuid="cab93625-d58a-414a-a57a-e0d650b7c6ff"/>
+				<text><![CDATA[no of male teachers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4980" y="91" width="255" height="20" uuid="8b9d6106-df1d-4856-8c38-b086ffb43d9e"/>
+				<text><![CDATA[ reason for discontinuetion of studies non-economic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7040" y="91" width="102" height="20" uuid="628c1c58-cd02-459d-aca3-3c525c0ad8f5"/>
+				<text><![CDATA[no of male teachers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7142" y="91" width="102" height="20" uuid="23e275b6-cdbf-4c51-8a76-ce0dac122fae"/>
+				<text><![CDATA[no of female teachers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5510" y="55" width="969" height="20" uuid="dc4d4d01-d084-4bf4-8dfa-84f18e72e433"/>
+				<text><![CDATA[middle school data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5640" y="91" width="139" height="20" uuid="0941dedf-1cf1-42f1-a586-e616c51c7504"/>
+				<text><![CDATA[total girls in middile school]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5886" y="91" width="118" height="20" uuid="11c54382-197c-408b-bfd5-6028314c8c35"/>
+				<text><![CDATA[student attending boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6785" y="91" width="255" height="20" uuid="1a2e3941-c9d5-4c5e-b4b4-b6391d6b2a85"/>
+				<text><![CDATA[ reason for discontinuetion of studies non-economic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6094" y="91" width="97" height="20" uuid="ec76ada3-7e35-4d70-9ed6-b2f975b27ff1"/>
+				<text><![CDATA[new entrance girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6356" y="91" width="197" height="20" uuid="eaa41f1b-5613-42c3-9aac-c745fd2544c6"/>
+				<text><![CDATA[student discontinued studies girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5510" y="91" width="130" height="20" uuid="ceec6b98-6464-43c5-afea-8d6ace34ecef"/>
+				<text><![CDATA[total boys in middile school]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6004" y="91" width="90" height="20" uuid="fc549f35-0367-4311-b6fa-691be4fd4bae"/>
+				<text><![CDATA[new entrance boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6553" y="91" width="227" height="20" uuid="e17fbbc8-621e-4e14-a003-77985526fabb"/>
+				<text><![CDATA[ reason for discontinuetion of studies economic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5779" y="91" width="107" height="20" uuid="9d5f45ea-7fa0-4025-90db-4f95ee254cf7"/>
+				<text><![CDATA[student attending girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6191" y="91" width="165" height="20" uuid="7e4a1742-9494-456f-9462-d411a97802ff"/>
+				<text><![CDATA[student discontinued studies boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7317" y="55" width="969" height="20" uuid="21f722a1-74ba-476c-a368-de808b1a31c2"/>
+				<text><![CDATA[High school data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8000" y="91" width="165" height="20" uuid="b558386d-5c26-4b79-bc62-35ef7fcb6fa3"/>
+				<text><![CDATA[student discontinued studies boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7449" y="91" width="139" height="20" uuid="4640175b-4d5a-429f-bfc1-b2fc33024ef5"/>
+				<text><![CDATA[total girls in High school]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7317" y="91" width="132" height="20" uuid="7695eaf3-1aec-4eb9-aedd-f203f6028209"/>
+				<text><![CDATA[total boys in High school]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7695" y="91" width="118" height="20" uuid="9442eebe-8f89-448e-90ba-32e80c46789e"/>
+				<text><![CDATA[student attending boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8328" y="91" width="227" height="20" uuid="7014c6fc-b640-477e-b987-5d511bec61a8"/>
+				<text><![CDATA[ reason for discontinuetion of studies economic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8555" y="91" width="255" height="20" uuid="7a9d7022-e23a-4283-8fac-9a3aa9bcefa0"/>
+				<text><![CDATA[ reason for discontinuetion of studies non-economic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7588" y="91" width="107" height="20" uuid="e92f2375-f1a1-4c42-b316-148c78d362ff"/>
+				<text><![CDATA[student attending girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8912" y="91" width="69" height="20" uuid="875920b5-eba1-4d0f-9a5f-d7f05ac394a8"/>
+				<text><![CDATA[no of female teachers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8165" y="91" width="163" height="20" uuid="9dbae825-6aaf-4a0a-a918-2c1dcaed8e75"/>
+				<text><![CDATA[student discontinued studies girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8810" y="91" width="102" height="20" uuid="ef90f219-4d21-45f7-8040-635aee309ec3"/>
+				<text><![CDATA[no of male teachers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7903" y="91" width="97" height="20" uuid="3cae2dde-680b-4d54-b2af-07ea7d6c6c5a"/>
+				<text><![CDATA[new entrance girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7813" y="91" width="90" height="20" uuid="09e04108-e196-4564-9716-3cd152912069"/>
+				<text><![CDATA[new entrance boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9071" y="55" width="1042" height="20" uuid="9744e48c-8aeb-42ae-b037-b90359274fb1"/>
+				<text><![CDATA[senior secondary school data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10421" y="91" width="255" height="20" uuid="25de17c3-a44a-44f5-956e-ffe0c1bdb4ce"/>
+				<text><![CDATA[ reason for discontinuetion of studies non-economic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9071" y="91" width="173" height="20" uuid="eb6abc65-106a-483e-bd66-3eccb1afe179"/>
+				<text><![CDATA[total boys in senior secondary school]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9244" y="91" width="171" height="20" uuid="f02146e4-2a29-4394-a1eb-c19e6246b1c0"/>
+				<text><![CDATA[total girls in seniro secondary school]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9992" y="91" width="197" height="20" uuid="a172b964-6f1d-4bd8-9746-a2e85da6cfda"/>
+				<text><![CDATA[student discontinued studies girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10189" y="91" width="227" height="20" uuid="1461e78c-05b0-46d7-8489-1e38fbecee4c"/>
+				<text><![CDATA[ reason for discontinuetion of studies economic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10676" y="91" width="102" height="20" uuid="f929eb69-19a9-49ce-89f9-53b3e0fec6cb"/>
+				<text><![CDATA[no of male teachers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9522" y="91" width="118" height="20" uuid="7bad49e6-3961-4799-9f77-baf4295febb1"/>
+				<text><![CDATA[student attending boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10778" y="91" width="102" height="20" uuid="e7c53349-df57-4a22-acfd-b85bd56134c9"/>
+				<text><![CDATA[no of female teachers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9415" y="91" width="107" height="20" uuid="917ce17f-e5d3-4503-b880-2400ca30be5e"/>
+				<text><![CDATA[student attending girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9730" y="91" width="97" height="20" uuid="84e759ab-f468-4535-9ce6-cd59f77ecf49"/>
+				<text><![CDATA[new entrance girls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9640" y="91" width="90" height="20" uuid="8d185ad4-a442-4b19-9d03-554dc1c94eb2"/>
+				<text><![CDATA[new entrance boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9827" y="91" width="165" height="20" uuid="ce782a32-a966-4651-9f15-d76d4712f26e"/>
+				<text><![CDATA[student discontinued studies boys]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="91" width="100" height="20" uuid="2b80633a-912e-4e5d-8551-5b2cc33fe1fe"/>
+				<text><![CDATA[district_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="91" width="100" height="20" uuid="9d03c758-65d7-48b6-9365-834cea8ad145"/>
+				<text><![CDATA[block_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="91" width="123" height="20" uuid="0744a55d-b77b-4f96-b921-ef83dc05813f"/>
+				<text><![CDATA[gram_panchayat_name]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="25" splitType="Stretch"/>
+	</detail>
+</jasperReport>

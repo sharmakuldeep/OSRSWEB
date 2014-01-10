@@ -1,0 +1,23 @@
+
+         .submitBtn{
+              margin-left: 40%;
+              font-size: 25px;
+              font-weight: bold;
+              color: black;
+          }
+          .store1{
+              height: 60px;
+          }
+          .name1={
+              font-size: 30px;
+              line-height:20px;
+              width: 90% ;
+              max-width: 90%;
+
+          }
+          .store1 .name1{
+             left: 25px;
+              top:15px;
+              white-space:normal;
+          }
+

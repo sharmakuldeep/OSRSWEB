@@ -1,0 +1,19 @@
+Dear $username,
+
+Greetings from Statistic department
+
+We received a request to reset your password, Your new password is:
+                    $password
+
+This is system generated password.
+Thus Kindly Change password.
+
+Thank you,
+
+MIMS
+Damyant
+
+
+
+
+
